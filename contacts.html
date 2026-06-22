@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/style_contacts.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="index.html#profil">Profil</a>
+                        </td>
+                        <td>
+                            <a href="index.html#competences">Compétences</a>
+                        </td>
+                        <td>
+                            <a href="index.html#experiences">Expériences</a>
+                        </td>
+                        <td>
+                            <a href="hobby.html">Loisirs</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </nav>
+    </header>
+    <main>
+        <section id="sec_form">
+            <h1 id="contacts">Contacts</h1>
+            <form action="https://httpbin.org/post" method="POST">
+                <label for="nom">Votre nom :</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="email">Votre email :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Votre message :</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Envoyer</button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <a href="mailto:bernard.sourichanh@le-campus-numerique.fr">
+                                <img src="Images/env.png" alt="" width="25" height="25">
+                            </a>
+                        </td>
+                        <td>
+                            <img src="Images/phone.png" alt="" width="25" height="25">
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>Mail</p>
+                        </td>
+                        <td>
+                            <p>99.99.99.99.99</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <nav>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="index.html#profil">Profil</a>
+                        </td>
+                        <td>
+                            <a href="index.html#competences">Compétences</a>
+                        </td>
+                        <td>
+                            <a href="index.html#experiences">Expériences</a>
+                        </td>
+                        <td>
+                            <a href="hobby.html">Loisirs</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </nav>
+    </footer>
+</body>
+
+</html>

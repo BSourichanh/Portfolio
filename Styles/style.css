@@ -1,0 +1,162 @@
+@import "variables.css";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--bg_color);
+    font-family: 'Roboto', Arial, sans-serif;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+header {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    background-color: black;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    background-color: black;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+nav table tr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Oswald', serif;
+    font-size: 3em;
+    margin: 50px;
+}
+
+p,
+a,
+li {
+    font-family: 'Roboto', serif;
+}
+
+ul {
+    margin-top: 100px;
+}
+
+a {
+    color: white;
+}
+
+main table {
+    margin: auto;
+    background-color: var(--font_bg_color);
+    border-radius: 1%;
+    border-collapse: collapse;
+}
+
+main table td {
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 16px;
+}
+
+main table th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.intro {
+    font-size: 16px;
+    background-color: var(--font_bg_color);
+    border-radius: 1%;
+    margin: 25px;
+}
+
+#pp {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 0.5px solid gray;
+}
+
+ul {
+    list-style: none;
+}
+
+section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: hwb(0 32% 68%);
+}
+
+#pp_descr {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width:768px) {
+    #pp_descr {
+        display: flex;
+        flex-direction: row;
+        gap: 100px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .intro {
+        font-size: 1.5em;
+    }
+
+
+}
+
+@media (min-width:420px) {
+    nav table tr {
+        gap: 25px;
+    }
+}
+
+@media (max-width:420px) {
+    nav table tr {
+        gap: 10px;
+    }
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: burlywood;
+    
+}
