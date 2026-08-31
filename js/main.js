@@ -89,10 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        // Fonction de spectre dynamique STRICTEMENT bornée au thème Néon Rose / Bleu / Violet (180° à 335°)
+        // État du mode piraté rouge (Easter egg)
+        let isHacked = false;
+
+        // Fonction de spectre dynamique (Cyberpunk Rose/Bleu/Violet ou Rouge Sang si piraté)
         const getCyberHue = (offset = 0, speed = 0.004) => {
             const t = time * speed + offset;
-            const norm = (Math.sin(t) + 1) * 0.5; // Oscille en continu entre 0.0 et 1.0
+            const norm = (Math.sin(t) + 1) * 0.5;
+            if (isHacked) {
+                return (norm * 22 + 348) % 360; // Spectre Rouge Sang / Crimson Alerte
+            }
             return 180 + norm * 155; // 180° (Cyan/Bleu) -> 265° (Violet) -> 335° (Rose néon)
         };
 
@@ -128,28 +134,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
         initNodes();
 
-        // 2. Ondes abstraites oscillant dans la trilogie Rose / Bleu / Violet
+        // 2. Ondes abstraites oscillant dans la trilogie Rose / Bleu / Violet (ou Rouge si piraté)
         const waves = [
             { yRatio: 0.28, offset: 0, speed: 0.006, freq: 0.0028, amp: 40 },
             { yRatio: 0.55, offset: Math.PI * 0.65, speed: 0.005, freq: 0.0022, amp: 48 },
             { yRatio: 0.82, offset: Math.PI * 1.35, speed: 0.007, freq: 0.0032, amp: 38 }
         ];
 
-        // 3. Halos de couleur ambiants (Exclusivité Rose / Bleu / Violet)
-        const haloColors = [
-            '255, 42, 133',  // Rose néon
-            '0, 240, 255',   // Cyan néon
-            '168, 85, 247',  // Violet électrique
-            '59, 130, 246',  // Bleu cobalt
-            '217, 70, 239',  // Fuchsia néon
-            '99, 102, 241'   // Indigo néon
-        ];
+        // 3. Halos de couleur ambiants
+        const getHaloColors = () => {
+            if (isHacked) {
+                return [
+                    '255, 0, 60',   // Rouge néon vif
+                    '220, 38, 38',  // Crimson d'alerte
+                    '185, 28, 28',  // Rouge profond
+                    '255, 20, 20',  // Rouge électrique
+                    '153, 27, 27'   // Rouge foncé
+                ];
+            }
+            return [
+                '255, 42, 133',  // Rose néon
+                '0, 240, 255',   // Cyan néon
+                '168, 85, 247',  // Violet électrique
+                '59, 130, 246',  // Bleu cobalt
+                '217, 70, 239',  // Fuchsia néon
+                '99, 102, 241'   // Indigo néon
+            ];
+        };
 
         const ambientHalos = [];
         const maxHalos = 6;
 
         const spawnHalo = () => {
-            const colorRgb = haloColors[Math.floor(Math.random() * haloColors.length)];
+            const haloPalette = getHaloColors();
+            const colorRgb = haloPalette[Math.floor(Math.random() * haloPalette.length)];
             ambientHalos.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
@@ -510,6 +528,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
             requestAnimationFrame(animate);
         };
+
+        // ======================================================================
+        // EASTER EGG : 10 Clics sur l'avatar de profil -> HACK ROUGE CYBERPUNK
+        // ======================================================================
+        const avatarFrame = document.querySelector('.hero-avatar-frame');
+        const rebootBtn = document.getElementById('hack-reboot-btn');
+        let avatarClicks = 0;
+        let clickTimer = null;
+
+        const toggleHackMode = (enable) => {
+            isHacked = enable;
+            if (isHacked) {
+                document.body.classList.add('system-hacked');
+                // Salve d'ondes de choc rouges explosives
+                const centerX = width / 2;
+                const centerY = height / 2;
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        ripples.push({
+                            x: centerX + (Math.random() - 0.5) * 260,
+                            y: centerY + (Math.random() - 0.5) * 260,
+                            radius: 5,
+                            maxRadius: Math.max(width, height) * 1.6,
+                            speed: 22,
+                            strength: 140,
+                            alpha: 1.0,
+                            color: '#ff003c'
+                        });
+                    }, i * 140);
+                }
+            } else {
+                document.body.classList.remove('system-hacked');
+                avatarClicks = 0;
+                createRipple(width / 2, height / 2);
+            }
+        };
+
+        if (avatarFrame) {
+            avatarFrame.style.cursor = 'pointer';
+            avatarFrame.setAttribute('title', 'Bernard Sourichanh [Click me]');
+            avatarFrame.addEventListener('click', () => {
+                avatarClicks++;
+                clearTimeout(clickTimer);
+
+                const rect = avatarFrame.getBoundingClientRect();
+                const ax = rect.left + rect.width / 2;
+                const ay = rect.top + rect.height / 2;
+
+                // Ondulation dynamique à chaque clic
+                ripples.push({
+                    x: ax,
+                    y: ay,
+                    radius: 5,
+                    maxRadius: 160 + avatarClicks * 18,
+                    speed: 14,
+                    strength: 45 + avatarClicks * 8,
+                    alpha: 0.9,
+                    color: avatarClicks >= 7 ? '#ff003c' : (isHacked ? '#ff003c' : '#00f0ff')
+                });
+
+                if (avatarClicks >= 10) {
+                    toggleHackMode(!isHacked);
+                    avatarClicks = 0;
+                } else {
+                    clickTimer = setTimeout(() => {
+                        avatarClicks = 0;
+                    }, 4000);
+                }
+            });
+        }
+
+        if (rebootBtn) {
+            rebootBtn.addEventListener('click', () => {
+                toggleHackMode(false);
+            });
+        }
 
         requestAnimationFrame(animate);
     };
