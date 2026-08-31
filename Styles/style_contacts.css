@@ -1,8 +1,152 @@
-#sec_form{ display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px; gap: 50px;}
-form {display: flex;flex-direction: column; justify-content: center; align-items: center;gap:15px;max-width: 500px;}
-label, textarea {padding: 10px;border: 1px solid black;border-radius: 4px;font-family: inherit;font-size: 1em;}
-textarea {padding-inline: 100px;}
-.message {padding-inline: 100px;}
-input:focus, textarea:focus{border-color: black;outline: none;}
-button {padding:  12px 24px;border: none;border-radius: 4px;font-size: 1em;}
-button:hover{background-color:bisque}
+@import "variables.css";
+
+/* ==========================================================================
+   CONTACTS PAGE STYLES - NÉON ROSE TERMINAL
+   ========================================================================== */
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3.5rem;
+    margin-top: 2.5rem;
+}
+
+.contact-card-box {
+    background: var(--bg-card);
+    clip-path: var(--clip-corner-md);
+    border: 1px solid var(--neon-pink);
+    padding: 2.85rem 2.25rem;
+    box-shadow: var(--shadow-md), var(--glow-pink);
+    backdrop-filter: blur(14px);
+    position: relative;
+}
+
+.contact-card-box::before {
+    content: '[TERMINAL_TRANSMIT // NET_ID]';
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-pink);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-pink-light);
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(10, 13, 22, 0.85);
+    border: 1px solid var(--border-color);
+    clip-path: var(--clip-corner-sm);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 0 2px rgba(255, 42, 133, 0.3), 0 0 15px rgba(255, 42, 133, 0.4);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-info-item {
+    background: var(--bg-card);
+    clip-path: var(--clip-corner-sm);
+    border: 1px solid var(--border-color);
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    backdrop-filter: blur(12px);
+    transition: var(--transition);
+}
+
+.contact-info-item:hover {
+    border-color: var(--neon-pink);
+    box-shadow: var(--glow-pink);
+    transform: translateY(-2px);
+}
+
+.contact-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+    background: rgba(255, 42, 133, 0.12);
+    border: 1px solid var(--neon-pink);
+    box-shadow: 0 0 12px rgba(255, 42, 133, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-pink);
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.contact-icon-img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    filter: invert(1) brightness(2) drop-shadow(0 0 4px var(--neon-pink));
+}
+
+.contact-details h4 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-pink);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 6px rgba(255, 42, 133, 0.4);
+}
+
+.contact-details a,
+.contact-details p {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.contact-details a:hover {
+    color: var(--text-pink);
+    text-shadow: 0 0 8px var(--neon-pink);
+}
+
+@media (max-width: 850px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+}

@@ -1,56 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loisirs</title>
+    <title>Loisirs & Passions | Bernard Sourichanh</title>
+    <meta name="description" content="Passions, loisirs et centres d'intérêt de Bernard Sourichanh : jeux vidéo, game design, veille technologique et multimédia.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="icon" type="image/png" href="Images/avatar_game.png">
+
+    <style>
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 2.5rem auto 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            clip-path: var(--clip-corner-md);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), var(--glow-blue);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.25rem;
+            margin-top: 3rem;
+        }
+
+        .hobby-card {
+            background: var(--bg-card);
+            clip-path: var(--clip-corner-sm);
+            border: 1px solid var(--border-color);
+            padding: 2.25rem 2rem;
+            text-align: left;
+            backdrop-filter: blur(14px);
+            transition: var(--transition);
+        }
+
+        .hobby-card:hover {
+            border-color: var(--neon-pink);
+            transform: translateY(-4px);
+            box-shadow: var(--glow-pink);
+        }
+
+        .hobby-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--neon-pink));
+        }
+
+        .hobby-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-pink);
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 8px rgba(255, 42, 133, 0.4);
+        }
+
+        .hobby-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <nav>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="index.html#sec_profil">Profil</a>
-                        </td>
-                        <td>
-                            <a href="index.html#sec_competences">Compétences</a>
-                        </td>
-                        <td>
-                            <a href="index.html#sec_experiences">Expériences</a>
-                        </td>
-                        <td>
-                            <a href="contacts.html">Contacts</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </nav>
-    </header>
-    <main>
-        <Section>
-            <h1 id="loisirs">Loisirs</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo at dicta laborum culpa quasi facere
-                temporibus harum dolorem maiores excepturi incidunt, quisquam aliquam quidem nobis sed adipisci. Hic,
-                ipsum corrupti.</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/g4ylwckvByk?si=Zxe4594WD8TtcGwM"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <a href="https://google.fr"> Avez-vous une question ?</a>
-        </Section>
-    </main>
-    <footer>
-    </footer>
-</body>
 
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="Images/avatar_game.png" alt="Avatar Bernard Sourichanh" class="nav-logo-icon">
+                <span>BERNARD</span> SOURICHANH
+            </a>
+
+            <button class="burger-btn" aria-label="Ouvrir le menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="index.html#projets" class="nav-link">Projets</a>
+                <a href="a-propos.html" class="nav-link">À Propos</a>
+                <a href="hobby.html" class="nav-link active">Loisirs</a>
+                <a href="contacts.html" class="nav-link">Contacts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <div class="text-center">
+                    <h1 class="section-title">Loisirs & Passions</h1>
+                    <p class="section-subtitle">Ce qui m'inspire et m'anime au quotidien en dehors du code</p>
+                </div>
+
+                <div class="hobbies-grid">
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🎮</div>
+                        <h3>Jeux Vidéo & Game Design</h3>
+                        <p>
+                            Passionné par l'analyse des mécaniques de jeu, les jeux indépendants inventifs, les RPG, les FPS compétitifs et l'évolution historique des jeux vidéo.
+                        </p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🚀</div>
+                        <h3>Prototypage & Game Jams</h3>
+                        <p>
+                            Création d'idées de gameplay rapides en temps limité, expérimentation de nouvelles mécaniques sur Unity & Unreal Engine.
+                        </p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">💻</div>
+                        <h3>Hardware & Nouvelles Technologies</h3>
+                        <p>
+                            Veille active sur le rendu temps réel, l'optimisation graphique (Nanite, Lumen), l'intelligence artificielle et l'assemblage de configurations PC.
+                        </p>
+                    </div>
+
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🎬</div>
+                        <h3>Cinéma & Multimédia</h3>
+                        <p>
+                            Mise en scène visuelle, sound design, bande originale de jeux vidéo et composition narrative visuelle.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top: 4rem;">
+                    <a href="index.html#contact" class="btn btn-primary">Une question ? Écrivez-moi !</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bernard Sourichanh. Tous droits réservés.</p>
+                <p><a href="index.html" style="color: var(--accent-primary);">← Retour à l'accueil</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
 </html>

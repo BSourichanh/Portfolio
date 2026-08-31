@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Race | Bernard Sourichanh - Portfolio</title>
+    <meta name="description" content="Air Race - Jeu de course multijoueur 3D sous Unity développé par Bernard Sourichanh et son équipe.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/projects.css">
+    <link rel="icon" type="image/png" href="Images/avatar_game.png">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="Images/avatar_game.png" alt="Avatar Bernard Sourichanh" class="nav-logo-icon">
+                <span>BERNARD</span> SOURICHANH
+            </a>
+
+            <button class="burger-btn" aria-label="Ouvrir le menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="index.html#projets" class="nav-link active">Projets</a>
+                <a href="a-propos.html" class="nav-link">À Propos</a>
+                <a href="hobby.html" class="nav-link">Loisirs</a>
+                <a href="contacts.html" class="nav-link">Contacts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Project Hero -->
+        <section class="project-hero">
+            <div class="container">
+                <div class="project-breadcrumb">
+                    <a href="index.html">Accueil</a>
+                    <span>/</span>
+                    <a href="index.html#projets">Projets</a>
+                    <span>/</span>
+                    <span>Air Race</span>
+                </div>
+
+                <div class="project-header">
+                    <div class="project-meta-badges">
+                        <span class="badge">Projet de 2ème année</span>
+                        <span class="badge badge-cyan">Unity 3D</span>
+                        <span class="badge badge-secondary">Jeu de course - Multijoueur</span>
+                        <span class="badge badge-secondary">Durée : 4 mois</span>
+                    </div>
+                    <h1>AIR RACE</h1>
+                </div>
+
+                <img src="Images/air_race_main.png" alt="Air Race - Jeu de Course Aérienne Unity" class="project-featured-image">
+            </div>
+        </section>
+
+        <!-- Project Content Layout -->
+        <section>
+            <div class="container project-layout">
+                <div class="project-main-content">
+                    <h2>Présentation du Projet</h2>
+                    <p>
+                        <strong>Air Race</strong> est un jeu de course 3D aérien et multijoueur développé en 4 mois sous <strong>Unity 3D</strong> sur PC. Le jeu propose des courses ultra-rapides et acrobatiques aux commandes de vaisseaux agiles à travers des circuits aériens suspendus.
+                    </p>
+
+                    <h2>Contraintes & Challenge Technique</h2>
+                    <p>
+                        Les contraintes majeures du projet étaient de concevoir et finaliser un jeu en 3D complet en seulement <strong>4 mois</strong>, au sein d'une équipe réduite sans graphistes 3D attitrés. L'équipe était ainsi composée de <strong>4 Game Designers / Programmeurs</strong> qui ont dû optimiser la modélisation modulaire, les shaders procéduraux et la physique pour offrir une expérience esthétique et compétitive.
+                    </p>
+
+                    <h2>Mes Responsabilités sur le Projet</h2>
+                    <div class="project-tasks-list">
+                        <div class="project-task-item">
+                            <span class="task-bullet">▸</span>
+                            <div>
+                                <strong>Programmation Réseau :</strong> Implémentation du système multijoueur, synchronisation des positions, vélocités et rotations des vaisseaux, interpolation/prédiction côté client et gestion des salons de jeu (lobby / matchmaking).
+                            </div>
+                        </div>
+                        <div class="project-task-item">
+                            <span class="task-bullet">▸</span>
+                            <div>
+                                <strong>Programmation Gameplay :</strong> Développement de la physique de vol (accélération, freinage, inclinaisons, boost/postcombustion), gestion des collisions à grande vitesse et checkpoints de course.
+                            </div>
+                        </div>
+                        <div class="project-task-item">
+                            <span class="task-bullet">▸</span>
+                            <div>
+                                <strong>Game Design :</strong> Équilibrage des statistiques des véhicules, conception du tracé des circuits aériens et calibrage des sensations de vitesse (camera shake, FOV dynamique).
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Galerie de Captures (Wix)</h2>
+                    <div class="project-gallery">
+                        <img src="Images/air_race_main.png" alt="Air Race Vaisseaux & Circuits" class="gallery-image clickable-image">
+                        <img src="Images/air_race_thumb.png" alt="Air Race Gameplay Course" class="gallery-image clickable-image">
+                    </div>
+                </div>
+
+                <!-- Sidebar Fiche Technique -->
+                <aside class="project-sidebar">
+                    <div class="project-specs-card">
+                        <h3 class="specs-title">Fiche Technique</h3>
+                        
+                        <div class="spec-row">
+                            <div class="spec-label">Projet</div>
+                            <div class="spec-value">Projet étudiant de 2ème année</div>
+                        </div>
+
+                        <div class="spec-row">
+                            <div class="spec-label">Durée</div>
+                            <div class="spec-value">4 mois</div>
+                        </div>
+
+                        <div class="spec-row">
+                            <div class="spec-label">Genre</div>
+                            <div class="spec-value">Jeu de course - Multijoueur</div>
+                        </div>
+
+                        <div class="spec-row">
+                            <div class="spec-label">Moteur</div>
+                            <div class="spec-value">Unity 3D (C#)</div>
+                        </div>
+
+                        <div class="spec-row">
+                            <div class="spec-label">Plateforme</div>
+                            <div class="spec-value">PC (Windows)</div>
+                        </div>
+
+                        <div class="spec-row">
+                            <div class="spec-label">Équipe (4 Programmeurs / GD)</div>
+                            <div class="spec-team-list">
+                                <span>• Léa Frayssinhes</span>
+                                <span>• Clément Lavievic</span>
+                                <span>• Diwan Chouc</span>
+                                <span>• <strong>Bernard Sourichanh</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Navigation inter-projets -->
+            <div class="container">
+                <div class="project-nav-footer">
+                    <a href="hungry-cat.html" class="project-nav-btn">
+                        <span class="project-nav-label">← Projet précédent</span>
+                        <span class="project-nav-title">Hungry Cat</span>
+                    </a>
+                    <a href="seven-fallen.html" class="project-nav-btn next">
+                        <span class="project-nav-label">Projet suivant →</span>
+                        <span class="project-nav-title">7 Fallen</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bernard Sourichanh. Tous droits réservés.</p>
+                <p><a href="index.html#projets" style="color: var(--accent-primary);">← Retour aux projets</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

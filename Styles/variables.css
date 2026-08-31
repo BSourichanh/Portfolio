@@ -1,4 +1,82 @@
-:root{
-    --bg_color:#4d4c4c;
-    --font_bg_color:#3e3e3e;
+:root {
+    /* ==========================================================================
+       PALETTE & DESIGN SYSTEM CYBERPUNK / NÉON ROSE VIBRANT
+       ========================================================================== */
+    
+    /* Arrière-plans Cyber Translucides en Verre Dépoli (Blur Glassmorphism) */
+    --bg-primary: #05060a;
+    --bg-secondary: #0a0d16;
+    --bg-card: rgba(8, 11, 20, 0.52);
+    --bg-card-hover: rgba(18, 12, 28, 0.68);
+    --bg-glass: rgba(6, 8, 16, 0.58);
+    --bg-cyber-yellow: #fcee0a;
+
+    /* Nuances Néon Rose & Complémentaires */
+    --neon-pink: #ff2a85;       /* Hot Neon Pink vibrant */
+    --neon-pink-bright: #ff007f;/* Rose néon éclatant */
+    --neon-pink-light: #ff70a6; /* Rose néon clair */
+    --neon-pink-soft: #f43f5e;  /* Rose rubis */
+    --neon-violet: #a855f7;     /* Violet électrique */
+    --neon-blue: #00f0ff;       /* Cyber Cyan */
+    --neon-yellow: #fcee0a;     /* Cyberpunk Yellow */
+    --neon-green: #00ff66;      /* Cyber Green */
+
+    /* Dégradés Néon Rose */
+    --gradient-cyber: linear-gradient(135deg, #ff007f 0%, #ff2a85 50%, #a855f7 100%);
+    --gradient-pink-violet: linear-gradient(135deg, #ff2a85 0%, #a855f7 100%);
+    --gradient-pink-blue: linear-gradient(135deg, #ff2a85 0%, #00f0ff 100%);
+
+    /* Alias */
+    --accent-primary: var(--neon-pink);
+    --accent-secondary: var(--neon-blue);
+    --accent-violet: var(--neon-violet);
+    --accent-gradient: var(--gradient-cyber);
+
+    /* ==========================================================================
+       TYPOGRAPHIE NÉON ROSE & ACCENTS
+       ========================================================================== */
+    --text-primary: #ffffff;            /* Blanc lumineux */
+    --text-pink: #ff2a85;               /* Rose néon vibrant pour titres & emphase */
+    --text-pink-bright: #ff007f;        /* Rose éclatant */
+    --text-pink-light: #ff70a6;         /* Rose clair pour sous-titres & tags */
+    --text-pink-glow: #ffc2d8;          /* Rose givré très lisible */
+    --text-secondary: #e2e8f0;          /* Argent cyber clair très lisible */
+    --text-muted: #f472b6;              /* Rose lavande pour métadonnées */
+    
+    --text-cyan: #00f0ff;
+    --text-yellow: #fcee0a;
+    --text-violet: #c084fc;
+
+    /* Bordures Néon Rose & Cyber */
+    --border-color: rgba(255, 42, 133, 0.28);
+    --border-pink: rgba(255, 42, 133, 0.65);
+    --border-violet: rgba(168, 85, 247, 0.5);
+    --border-blue: rgba(0, 240, 255, 0.6);
+    --border-yellow: rgba(252, 238, 10, 0.6);
+
+    /* Lueurs & Ombres Néon Rose */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.7);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.85);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.95);
+    
+    --glow-pink: 0 0 16px rgba(255, 42, 133, 0.75), 0 0 35px rgba(255, 42, 133, 0.45), 0 0 70px rgba(255, 0, 127, 0.25);
+    --glow-violet: 0 0 16px rgba(168, 85, 247, 0.7), 0 0 35px rgba(168, 85, 247, 0.4), 0 0 65px rgba(168, 85, 247, 0.2);
+    --glow-blue: 0 0 16px rgba(0, 240, 255, 0.7), 0 0 35px rgba(0, 240, 255, 0.4), 0 0 65px rgba(0, 240, 255, 0.2);
+    --glow-yellow: 0 0 16px rgba(252, 238, 10, 0.7), 0 0 35px rgba(252, 238, 10, 0.4), 0 0 65px rgba(252, 238, 10, 0.2);
+
+    /* Polices */
+    --font-heading: 'Oswald', 'Rajdhani', sans-serif;
+    --font-body: 'Roboto', 'Inter', -apple-system, sans-serif;
+    --font-mono: 'Consolas', 'Courier New', monospace;
+
+    /* Découpes Cyberpunk */
+    --clip-corner-sm: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    --clip-corner-md: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+    --clip-btn: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-full: 9999px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --container-max-width: 1200px;
 }

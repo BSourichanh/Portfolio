@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes & Démos : Positionnement CSS (position)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-static: #64748b;
+      --accent-relative: #3b82f6;
+      --accent-absolute: #ef4444;
+      --accent-fixed: #10b981;
+      --accent-sticky: #f59e0b;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #38bdf8;
+    }
+
+    p.intro {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .criteria-box {
+      background: rgba(56, 189, 248, 0.1);
+      border-left: 4px solid #38bdf8;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .badge-static { background: var(--accent-static); color: #fff; }
+    .badge-relative { background: var(--accent-relative); color: #fff; }
+    .badge-absolute { background: var(--accent-absolute); color: #fff; }
+    .badge-fixed { background: var(--accent-fixed); color: #fff; }
+    .badge-sticky { background: var(--accent-sticky); color: #000; }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    ul li strong {
+      color: var(--text);
+    }
+
+    .demo-container {
+      background: #090d16;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      position: relative;
+      min-height: 140px;
+      overflow: hidden;
+    }
+
+    .demo-box {
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Démonstrations spécifiques */
+    .box-static {
+      background: var(--accent-static);
+      color: #fff;
+    }
+
+    .box-relative {
+      background: var(--accent-relative);
+      color: #fff;
+      position: relative;
+      top: 15px;
+      left: 30px;
+    }
+
+    .relative-parent {
+      position: relative;
+      height: 150px;
+      background: #111827;
+      border: 2px dashed var(--accent-relative);
+    }
+
+    .box-absolute {
+      background: var(--accent-absolute);
+      color: #fff;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .sticky-container {
+      height: 200px;
+      overflow-y: scroll;
+      background: #111827;
+      border: 1px solid var(--border);
+      padding: 0 1rem;
+    }
+
+    .box-sticky {
+      background: var(--accent-sticky);
+      color: #000;
+      position: sticky;
+      top: 0;
+      padding: 0.5rem;
+      z-index: 10;
+    }
+
+    /* Élément Fixed pour la démo */
+    .demo-fixed-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent-fixed);
+      color: #000;
+      padding: 0.75rem 1.25rem;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    code {
+      background: #0f172a;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: #38bdf8;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Démo du Position Fixed (Bouton flottant en bas à droite) -->
+  <div class="demo-fixed-widget">
+    📌 Démo position: fixed (Fixé à l'écran)
+  </div>
+
+  <header>
+    <h1>Fiche Mémoire & Démo : Propriété CSS <code>position</code></h1>
+    <p class="intro">Résumé complet des 5 modes de positionnement CSS et leurs différences.</p>
+  </header>
+
+  <div class="criteria-box">
+    <strong>Preuve de travail :</strong>
+    <p>Explication des différences entre <code>static</code>, <code>relative</code>, <code>absolute</code>, <code>fixed</code> et <code>sticky</code> avec exemples visuels dans le code HTML/CSS.</p>
+  </div>
+
+  <!-- 1. STATIC -->
+  <div class="section">
+    <h2><span class="badge badge-static">position: static</span> (Par défaut)</h2>
+    <ul>
+      <li><strong>Flux normal :</strong> L'élément suit l'ordre naturel d'affichage du document HTML.</li>
+      <li><strong>Propriétés inactives :</strong> <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> et <code>z-index</code> n'ont **aucun effet**.</li>
+    </ul>
+    <div class="demo-container">
+      <div class="demo-box box-static">Élément 1 (static)</div>
+      <div class="demo-box box-static" style="margin-top: 10px;">Élément 2 (static)</div>
+    </div>
+  </div>
+
+  <!-- 2. RELATIVE -->
+  <div class="section">
+    <h2><span class="badge badge-relative">position: relative</span></h2>
+    <ul>
+      <li><strong>Décalage par rapport à lui-même :</strong> Positionné dans le flux normal, puis décalé par rapport à sa position d'origine.</li>
+      <li><strong>Espace réservé :</strong> L'espace initial de l'élément reste réservé dans le flux (aucun impact sur le positionnement des éléments voisins).</li>
+      <li><strong>Rôle de conteneur :</strong> Sert très souvent d'élément de référence (parent) pour un enfant en <code>position: absolute</code>.</li>
+    </ul>
+    <div class="demo-container">
+      <div class="demo-box box-static">Élément 1 (static)</div>
+      <div class="demo-box box-relative">Élément 2 (relative : top 15px, left 30px)</div>
+      <div class="demo-box box-static" style="margin-top: 10px;">Élément 3 (static - garde sa place normale)</div>
+    </div>
+  </div>
+
+  <!-- 3. ABSOLUTE -->
+  <div class="section">
+    <h2><span class="badge badge-absolute">position: absolute</span></h2>
+    <ul>
+      <li><strong>Extrait du flux :</strong> Retiré du flux normal du document (ne réserve aucun espace, les autres éléments se placent comme s'il n'existait pas).</li>
+      <li><strong>Parent de référence :</strong> Se positionne par rapport au premier ancêtre qui possède une position autre que <code>static</code> (généralement un parent <code>relative</code>). Si aucun ancêtre n'est positionné, il se réfère au <code>&lt;html&gt;</code> / viewport.</li>
+    </ul>
+    <div class="demo-container relative-parent">
+      <p style="color: var(--text-muted); font-size: 0.85rem;">Conteneur Parent (<code>position: relative</code>)</p>
+      <div class="demo-box box-absolute">Élément Absolute (top: 15px, right: 15px)</div>
+    </div>
+  </div>
+
+  <!-- 4. FIXED -->
+  <div class="section">
+    <h2><span class="badge badge-fixed">position: fixed</span></h2>
+    <ul>
+      <li><strong>Extrait du flux :</strong> Retiré du flux normal.</li>
+      <li><strong>Fixé au Viewport :</strong> Se positionne par rapport à la fenêtre du navigateur (viewport). Il reste **immobile lors du défilement / scroll**.</li>
+      <li><strong>Utilisation courante :</strong> Barres de navigation (headers sticky/fixed), boutons "Retour en haut", modales, badges flottants.</li>
+    </ul>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+      👉 Regardez en bas à droite de votre écran : le widget vert est en <code>position: fixed</code>.
+    </p>
+  </div>
+
+  <!-- 5. STICKY -->
+  <div class="section">
+    <h2><span class="badge badge-sticky">position: sticky</span></h2>
+    <ul>
+      <li><strong>Hybride (Relative + Fixed) :</strong> Se comporte comme <code>relative</code> tant qu'on ne scrolle pas jusqu'à son seuil défini (ex: <code>top: 0</code>). Une fois le seuil atteint, il devient "collant" (comme un <code>fixed</code>) à l'intérieur de son conteneur parent.</li>
+      <li><strong>Dépendance du parent :</strong> Il reste collé uniquement tant que l'utilisateur défile à l'intérieur du conteneur parent.</li>
+    </ul>
+    <div class="sticky-container">
+      <div class="demo-box box-sticky">En-tête Sticky (position: sticky; top: 0;) - Faites défiler la zone ci-dessous</div>
+      <div style="padding: 1rem 0; color: var(--text-muted);">
+        <p>Ligne de contenu 1</p>
+        <p>Ligne de contenu 2</p>
+        <p>Ligne de contenu 3</p>
+        <p>Ligne de contenu 4</p>
+        <p>Ligne de contenu 5</p>
+        <p>Ligne de contenu 6</p>
+        <p>Ligne de contenu 7</p>
+        <p>Ligne de contenu 8</p>
+        <p>Ligne de contenu 9</p>
+        <p>Ligne de contenu 10</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

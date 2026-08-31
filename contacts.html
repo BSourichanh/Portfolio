@@ -1,106 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts</title>
+    <title>Contact | Bernard Sourichanh</title>
+    <meta name="description" content="Contactez Bernard Sourichanh, Game Programmer & Game Designer pour vos projets de jeux vidéo ou opportunités professionnelles.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="Styles/style.css">
     <link rel="stylesheet" href="Styles/style_contacts.css">
+    <link rel="icon" type="image/png" href="Images/avatar_game.png">
 </head>
-
 <body>
+
+    <!-- Header -->
     <header>
-        <nav>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="index.html#profil">Profil</a>
-                        </td>
-                        <td>
-                            <a href="index.html#competences">Compétences</a>
-                        </td>
-                        <td>
-                            <a href="index.html#experiences">Expériences</a>
-                        </td>
-                        <td>
-                            <a href="hobby.html">Loisirs</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="Images/avatar_game.png" alt="Avatar Bernard Sourichanh" class="nav-logo-icon">
+                <span>BERNARD</span> SOURICHANH
+            </a>
+
+            <button class="burger-btn" aria-label="Ouvrir le menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="index.html#projets" class="nav-link">Projets</a>
+                <a href="a-propos.html" class="nav-link">À Propos</a>
+                <a href="hobby.html" class="nav-link">Loisirs</a>
+                <a href="contacts.html" class="nav-link active">Contacts</a>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <section id="sec_form">
-            <h1 id="contacts">Contacts</h1>
-            <form action="https://httpbin.org/post" method="POST">
-                <label for="nom">Votre nom :</label>
-                <input type="text" id="nom" name="nom" required>
+        <section>
+            <div class="container">
+                <div class="text-center">
+                    <h1 class="section-title">Contactez-Moi</h1>
+                    <p class="section-subtitle">Une opportunité, un projet ou une question ? N'hésitez pas à m'écrire !</p>
+                </div>
 
-                <label for="email">Votre email :</label>
-                <input type="email" id="email" name="email" required>
+                <div class="contact-layout">
+                    <!-- Formulaire de contact -->
+                    <div class="contact-card-box">
+                        <form class="contact-form" action="https://httpbin.org/post" method="POST">
+                            <div class="form-group">
+                                <label for="nom">Votre Nom</label>
+                                <input type="text" id="nom" name="nom" class="form-control" placeholder="ex: Jean Dupont" required>
+                            </div>
 
-                <label for="message">Votre message :</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                            <div class="form-group">
+                                <label for="email">Votre Adresse Email</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="ex: jean.dupont@email.com" required>
+                            </div>
 
-                <button type="submit">Envoyer</button>
-            </form>
+                            <div class="form-group">
+                                <label for="sujet">Sujet</label>
+                                <input type="text" id="sujet" name="sujet" class="form-control" placeholder="ex: Opportunité de poste / Projet de jeu">
+                            </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <td>
-                            <a href="mailto:bernard.sourichanh@le-campus-numerique.fr">
-                                <img src="Images/env.png" alt="" width="25" height="25">
-                            </a>
-                        </td>
-                        <td>
-                            <img src="Images/phone.png" alt="" width="25" height="25">
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>Mail</p>
-                        </td>
-                        <td>
-                            <p>99.99.99.99.99</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            <div class="form-group">
+                                <label for="message">Votre Message</label>
+                                <textarea id="message" name="message" class="form-control" placeholder="Écrivez votre message ici..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer le message</button>
+                        </form>
+                    </div>
+
+                    <!-- Coordonnées & Liens -->
+                    <div class="contact-info-list">
+                        <div class="contact-info-item">
+                            <div class="contact-icon-wrapper">
+                                <img src="Images/env.png" alt="Email Icon" class="contact-icon-img">
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email Direct</h4>
+                                <a href="mailto:bernard.sourichanh@gmail.com">bernard.sourichanh@gmail.com</a>
+                                <br>
+                                <a href="mailto:bernard.sourichanh@le-campus-numerique.fr" style="font-size: 0.82rem; color: var(--text-muted);">bernard.sourichanh@le-campus-numerique.fr</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon-wrapper">
+                                <img src="Images/phone.png" alt="Phone Icon" class="contact-icon-img">
+                            </div>
+                            <div class="contact-details">
+                                <h4>Téléphone</h4>
+                                <a href="tel:0652767215">06 52 76 72 15</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon-wrapper">
+                                📄
+                            </div>
+                            <div class="contact-details">
+                                <h4>Curriculum Vitae</h4>
+                                <a href="CV.pdf" target="_blank" rel="noopener noreferrer">Consulter mon CV (PDF) ↗</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon-wrapper">
+                                <svg style="width: 26px; height: 26px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </div>
+                            <div class="contact-details">
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/BSourichanh" target="_blank" rel="noopener noreferrer">github.com/BSourichanh ↗</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon-wrapper">
+                                💼
+                            </div>
+                            <div class="contact-details">
+                                <h4>Disponibilité</h4>
+                                <p>En recherche active d'une <strong>alternance</strong> (Full-Stack / IA / Game Dev)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
-    <footer>
-        <nav>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <a href="index.html#profil">Profil</a>
-                        </td>
-                        <td>
-                            <a href="index.html#competences">Compétences</a>
-                        </td>
-                        <td>
-                            <a href="index.html#experiences">Expériences</a>
-                        </td>
-                        <td>
-                            <a href="hobby.html">Loisirs</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </nav>
-    </footer>
-</body>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bernard Sourichanh. Tous droits réservés.</p>
+                <p><a href="index.html" style="color: var(--accent-primary);">← Retour à l'accueil</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
 </html>
