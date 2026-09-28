@@ -215,13 +215,13 @@
                 <div class="skills-grid">
                     <div class="skill-card">
                         <div class="skill-card-icon">⚡</div>
-                        <h3 class="skill-card-title">Langages & Code</h3>
+                        <h3 class="skill-card-title">Langages & Backend</h3>
                         <div class="skill-list">
+                            <div class="skill-list-item">Java 21 & Spring Boot 3 (JPA, Security 6, JWT)</div>
                             <div class="skill-list-item">C# (.NET) / C / C++</div>
-                            <div class="skill-list-item">Java (POO / SOLID)</div>
-                            <div class="skill-list-item">JavaScript / HTML5 / CSS3</div>
-                            <div class="skill-list-item">Blueprints (Unreal Engine)</div>
-                            <div class="skill-list-item">Scripting PowerShell / Python</div>
+                            <div class="skill-list-item">TypeScript / JavaScript (Canvas 2D / DSP)</div>
+                            <div class="skill-list-item">Architectures Microservices & API RESTful</div>
+                            <div class="skill-list-item">Scripting Python & Bash (Wayland / Linux)</div>
                         </div>
                     </div>
 
@@ -389,7 +389,99 @@
                 </div>
 
                 <div class="github-grid">
-                    <!-- POO_JAVA -->
+                    <!-- 1. JavaSpring (Square Games Microservices API) -->
+                    <article class="github-card">
+                        <div>
+                            <div class="github-card-header">
+                                <h3 class="github-repo-title">
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    JavaSpring
+                                </h3>
+                                <span class="badge badge-cyan">Spring Boot 3</span>
+                            </div>
+                            <p>
+                                Architecture microservices Java 21 & Spring Boot 3 (API Square Games) : Inversion de Contrôle (IoC), plugins modulaires (TicTacToe, ConnectFour), persistance multi-sources DAO (Mémoire, JDBC, JPA/Hibernate), communication inter-services via <code>RestClient</code>, sécurité Stateless (Spring Security 6, JWT, RBAC) et SPA frontend.
+                            </p>
+                        </div>
+                        <div class="github-card-footer">
+                            <div class="github-tech">
+                                <span class="github-tech-dot"></span>
+                                <span>Java 21 / Spring Boot 3 / Microservices</span>
+                            </div>
+                            <a href="https://github.com/BSourichanh/JavaSpring" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- 2. JavaSpringApiUsers (Auth & Identity Microservice) -->
+                    <article class="github-card">
+                        <div>
+                            <div class="github-card-header">
+                                <h3 class="github-repo-title">
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    JavaSpringApiUsers
+                                </h3>
+                                <span class="badge badge-pink">Spring Security</span>
+                            </div>
+                            <p>
+                                Microservice autonome d'authentification et de gestion des identités : Spring Boot 3.3.4, Spring Security 6, JJWT, Spring Data JPA et base de données H2 in-memory. Hachage sécurisé BCrypt, validation de claims de jetons et contrôle d'accès basé sur les rôles (RBAC).
+                            </p>
+                        </div>
+                        <div class="github-card-footer">
+                            <div class="github-tech">
+                                <span class="github-tech-dot" style="background: var(--neon-pink);"></span>
+                                <span>Security 6 / JJWT / JPA / H2</span>
+                            </div>
+                            <a href="https://github.com/BSourichanh/JavaSpringApiUsers" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- 3. Spicetify_visualizer (Audio Reactive DSP & Canvas) -->
+                    <article class="github-card">
+                        <div>
+                            <div class="github-card-header">
+                                <h3 class="github-repo-title">
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    Spicetify_visualizer
+                                </h3>
+                                <span class="badge badge-cyan">TypeScript</span>
+                            </div>
+                            <p>
+                                Suite de visualisation audio-réactive pour Spotify via Spicetify : Rendu 60–144 FPS Zero-Allocation, moteur DSP stéréo temps réel, pipeline modulaire Canvas 2D ultra-optimisé et synchronisation dynamique des couleurs avec les pochettes d'albums.
+                            </p>
+                        </div>
+                        <div class="github-card-footer">
+                            <div class="github-tech">
+                                <span class="github-tech-dot"></span>
+                                <span>TypeScript / Canvas 2D / DSP Stéréo</span>
+                            </div>
+                            <a href="https://github.com/BSourichanh/Spicetify_visualizer" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- 4. Hyprland_Aurora (Linux / Wayland Dotfiles & Design System) -->
+                    <article class="github-card">
+                        <div>
+                            <div class="github-card-header">
+                                <h3 class="github-repo-title">
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    Hyprland_Aurora
+                                </h3>
+                                <span class="badge badge-violet">Linux / Wayland</span>
+                            </div>
+                            <p>
+                                Configuration complète et design system pour Hyprland sous Linux / Wayland (Thème Aurora) : effet glassmorphism, bordures néon GPU en dégradé continu 360°, automatisation de scripts Python & Bash, Waybar et gestionnaire Pipewire.
+                            </p>
+                        </div>
+                        <div class="github-card-footer">
+                            <div class="github-tech">
+                                <span class="github-tech-dot" style="background: var(--neon-violet);"></span>
+                                <span>Hyprland / Python / Bash / Wayland</span>
+                            </div>
+                            <a href="https://github.com/BSourichanh/Hyprland_Aurora" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                        </div>
+                    </article>
+
+                    <!-- 5. POO_JAVA (D&D TUI & SOLID Architecture) -->
                     <article class="github-card">
                         <div>
                             <div class="github-card-header">
@@ -397,22 +489,22 @@
                                     <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                                     POO_JAVA
                                 </h3>
-                                <span class="badge badge-cyan">Java</span>
+                                <span class="badge badge-cyan">Java 21</span>
                             </div>
                             <p>
-                                Jeu de plateau textuel Donjons & Dragons jouable à 1 ou 2 joueurs dans la console (TUI / ANSI). Architecture orientée objet respectant strictement les principes SOLID et Design Patterns.
+                                Jeu de plateau textuel Donjons & Dragons jouable à 1 ou 2 joueurs dans la console (TUI / ANSI). Architecture orientée objet respectant strictement les principes SOLID et Design Patterns (Factory, State, Strategy).
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
                                 <span class="github-tech-dot"></span>
-                                <span>Java / POO / SOLID</span>
+                                <span>Java 21 / POO / SOLID / Patterns</span>
                             </div>
                             <a href="https://github.com/BSourichanh/POO_JAVA" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
 
-                    <!-- BDD_SQL -->
+                    <!-- 6. BDD_SQL (Databases & Modeling) -->
                     <article class="github-card">
                         <div>
                             <div class="github-card-header">
@@ -420,41 +512,18 @@
                                     <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                                     BDD_SQL
                                 </h3>
-                                <span class="badge badge-violet">Data / SQL</span>
+                                <span class="badge badge-violet">Data / SQL & NoSQL</span>
                             </div>
                             <p>
-                                Conception et requêtage avancé de bases de données relationnelles SQL et NoSQL (MongoDB), SQL Analytique, Spark, IA Vectorielle et conteneurisation Docker.
+                                Conception, modélisation MCD/MLD et requêtage avancé de bases de données relationnelles SQL (PostgreSQL, MySQL) et NoSQL (MongoDB, Redis). Procédures stockées, triggers, indexation et conteneurisation Docker.
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
                                 <span class="github-tech-dot" style="background: var(--neon-violet);"></span>
-                                <span>SQL / NoSQL / Docker</span>
+                                <span>SQL / PostgreSQL / MongoDB / Docker</span>
                             </div>
                             <a href="https://github.com/BSourichanh/BDD_SQL" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
-                        </div>
-                    </article>
-
-                    <!-- Jeu_de_loie -->
-                    <article class="github-card">
-                        <div>
-                            <div class="github-card-header">
-                                <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                                    Jeu_de_loie
-                                </h3>
-                                <span class="badge badge-secondary">Processing</span>
-                            </div>
-                            <p>
-                                Implémentation du classique Jeu de l'oie en Processing (Java) avec gestion complète des règles de cases, pièges et rendu graphique interactif.
-                            </p>
-                        </div>
-                        <div class="github-card-footer">
-                            <div class="github-tech">
-                                <span class="github-tech-dot" style="background: var(--neon-yellow);"></span>
-                                <span>Processing / Java</span>
-                            </div>
-                            <a href="https://github.com/BSourichanh/Jeu_de_loie" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
                 </div>
