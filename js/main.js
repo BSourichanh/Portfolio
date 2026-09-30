@@ -795,4 +795,207 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ==========================================================================
+    // 8. SYNCHRONISATION & AUTOMATISATION DES DÉPÔTS GITHUB (API + CACHE)
+    // ==========================================================================
+    const initGitHubReposAutomation = () => {
+        const grid = document.getElementById('github-repos-grid');
+        const syncText = document.getElementById('github-sync-text');
+        if (!grid) return;
+
+        const GITHUB_USERNAME = 'BSourichanh';
+        const GITHUB_CACHE_KEY = 'bs_github_repos_v2';
+        const GITHUB_CACHE_TIME_KEY = 'bs_github_repos_time_v2';
+        const GITHUB_CACHE_TTL = 1000 * 60 * 60; // 1 heure de cache
+
+        // Couleurs des langages et badges
+        const LANGUAGE_CONFIG = {
+            'Java': { badge: 'badge-cyan', dot: 'var(--neon-cyan)', name: 'Java 21' },
+            'TypeScript': { badge: 'badge-cyan', dot: 'var(--neon-cyan)', name: 'TypeScript' },
+            'JavaScript': { badge: 'badge-pink', dot: 'var(--neon-pink)', name: 'JavaScript' },
+            'Python': { badge: 'badge-violet', dot: 'var(--neon-violet)', name: 'Python' },
+            'C#': { badge: 'badge-secondary', dot: '#22c55e', name: 'C# (.NET)' },
+            'C++': { badge: 'badge-pink', dot: 'var(--neon-pink)', name: 'C++' },
+            'C': { badge: 'badge-secondary', dot: '#94a3b8', name: 'C' },
+            'HTML': { badge: 'badge-pink', dot: 'var(--neon-pink)', name: 'HTML5 / CSS3' },
+            'Processing': { badge: 'badge-secondary', dot: 'var(--neon-yellow)', name: 'Processing' },
+            'Hack': { badge: 'badge-violet', dot: 'var(--neon-violet)', name: 'SQL / BDD' },
+            'Shell': { badge: 'badge-violet', dot: 'var(--neon-violet)', name: 'Bash / Linux' }
+        };
+
+        // Métadonnées enrichies par défaut pour les projets majeurs
+        const REPO_ENRICHMENTS = {
+            'JavaSpring': {
+                desc: "Architecture microservices Java 21 & Spring Boot 3 (API Square Games) : Inversion de Contrôle (IoC), plugins modulaires (TicTacToe, ConnectFour), persistance multi-sources DAO (Mémoire, JDBC, JPA/Hibernate), communication inter-services via RestClient, sécurité Stateless (Spring Security 6, JWT, RBAC) et SPA frontend.",
+                tags: 'Java 21 / Spring Boot 3 / Microservices',
+                badgeText: 'Spring Boot 3',
+                badgeClass: 'badge-cyan',
+                dotColor: 'var(--neon-cyan)',
+                priority: 1
+            },
+            'JavaSpringApiUsers': {
+                desc: "Microservice autonome d'authentification et de gestion des identités : Spring Boot 3.3.4, Spring Security 6, JJWT, Spring Data JPA et base de données H2 in-memory. Hachage sécurisé BCrypt, validation de claims de jetons et contrôle d'accès basé sur les rôles (RBAC).",
+                tags: 'Security 6 / JJWT / JPA / H2',
+                badgeText: 'Spring Security',
+                badgeClass: 'badge-pink',
+                dotColor: 'var(--neon-pink)',
+                priority: 2
+            },
+            'Spicetify_visualizer': {
+                desc: "Suite de visualisation audio-réactive pour Spotify via Spicetify : Rendu 60–144 FPS Zero-Allocation, moteur DSP stéréo temps réel, pipeline modulaire Canvas 2D ultra-optimisé et synchronisation dynamique des couleurs avec les pochettes d'albums.",
+                tags: 'TypeScript / Canvas 2D / DSP Stéréo',
+                badgeText: 'TypeScript',
+                badgeClass: 'badge-cyan',
+                dotColor: 'var(--neon-cyan)',
+                priority: 3
+            },
+            'Hyprland_Aurora': {
+                desc: "Configuration complète et design system pour Hyprland sous Linux / Wayland (Thème Aurora) : effet glassmorphism, bordures néon GPU en dégradé continu 360°, automatisation de scripts Python & Bash, Waybar et gestionnaire Pipewire.",
+                tags: 'Hyprland / Python / Bash / Wayland',
+                badgeText: 'Linux / Wayland',
+                badgeClass: 'badge-violet',
+                dotColor: 'var(--neon-violet)',
+                priority: 4
+            },
+            'POO_JAVA': {
+                desc: "Jeu de plateau textuel Donjons & Dragons jouable à 1 ou 2 joueurs dans la console (TUI / ANSI). Architecture orientée objet respectant strictement les principes SOLID et Design Patterns (Factory, State, Strategy).",
+                tags: 'Java 21 / POO / SOLID / Patterns',
+                badgeText: 'Java 21',
+                badgeClass: 'badge-cyan',
+                dotColor: 'var(--neon-cyan)',
+                priority: 5
+            },
+            'BDD_SQL': {
+                desc: "Conception, modélisation MCD/MLD et requêtage avancé de bases de données relationnelles SQL (PostgreSQL, MySQL) et NoSQL (MongoDB, Redis). Procédures stockées, triggers, indexation et conteneurisation Docker.",
+                tags: 'SQL / PostgreSQL / MongoDB / Docker',
+                badgeText: 'Data / SQL & NoSQL',
+                badgeClass: 'badge-violet',
+                dotColor: 'var(--neon-violet)',
+                priority: 6
+            },
+            'Jeu_de_loie': {
+                desc: "Implémentation du classique Jeu de l'oie en Processing (Java) avec gestion complète des règles de cases, pièges et rendu graphique interactif.",
+                tags: 'Processing / Java',
+                badgeText: 'Processing',
+                badgeClass: 'badge-secondary',
+                dotColor: 'var(--neon-yellow)',
+                priority: 7
+            },
+            'Portfolio': {
+                desc: "Portfolio cyberpunk one-page immersif : animations Canvas 2D interactives à 60/120 FPS, header HUD flottant, ondes de choc réactives et synchronisation automatique des dépôts GitHub.",
+                tags: 'HTML5 / CSS3 / JavaScript',
+                badgeText: 'Web / Canvas 2D',
+                badgeClass: 'badge-pink',
+                dotColor: 'var(--neon-pink)',
+                priority: 8
+            }
+        };
+
+        const renderRepos = (reposList) => {
+            if (!reposList || !reposList.length) return;
+
+            // Filtrer les dépôts (ignorer les forks vides ou dépôts spéciaux de profil readme)
+            const filtered = reposList.filter(repo => {
+                if (repo.fork) return false;
+                if (repo.name === GITHUB_USERNAME) return false;
+                return true;
+            });
+
+            // Trier par priorité définie, puis par date de mise à jour récente
+            filtered.sort((a, b) => {
+                const pA = REPO_ENRICHMENTS[a.name]?.priority || 99;
+                const pB = REPO_ENRICHMENTS[b.name]?.priority || 99;
+                if (pA !== pB) return pA - pB;
+                return new Date(b.pushed_at || b.updated_at) - new Date(a.pushed_at || a.updated_at);
+            });
+
+            const displayRepos = filtered.slice(0, 8);
+
+            const githubSvg = `<svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>`;
+            const starSvg = `<svg viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>`;
+            const forkSvg = `<svg viewBox="0 0 16 16"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v.878A2.25 2.25 0 0 0 5.75 8.5h4.5A2.25 2.25 0 0 0 12.5 6.25v-.878a2.25 2.25 0 1 0-1.5 0v.878a.75.75 0 0 1-.75.75h-4.5A.75.75 0 0 1 5 6.25v-.878ZM11 3.25a.75.75 0 1 1 1.5 0 .75.75 0 0 1-1.5 0ZM5.75 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm-2.25.75a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0Z"/></svg>`;
+
+            grid.innerHTML = displayRepos.map(repo => {
+                const enrich = REPO_ENRICHMENTS[repo.name] || {};
+                const langConf = LANGUAGE_CONFIG[repo.language] || {
+                    badge: 'badge-cyan',
+                    dot: 'var(--neon-cyan)',
+                    name: repo.language || 'Projet'
+                };
+
+                const desc = enrich.desc || repo.description || 'Projet et code source public sur GitHub.';
+                const badgeText = enrich.badgeText || langConf.name;
+                const badgeClass = enrich.badgeClass || langConf.badge;
+                const dotColor = enrich.dotColor || langConf.dot;
+                const techText = enrich.tags || `${repo.language || 'Code'} / Git`;
+
+                const stars = repo.stargazers_count ? `<span class="github-stat-item">${starSvg} ${repo.stargazers_count}</span>` : '';
+                const forks = repo.forks_count ? `<span class="github-stat-item">${forkSvg} ${repo.forks_count}</span>` : '';
+                const statsHtml = (stars || forks) ? `<div class="github-stats">${stars}${forks}</div>` : '';
+
+                return `
+                    <article class="github-card">
+                        <div>
+                            <div class="github-card-header">
+                                <h3 class="github-repo-title">
+                                    ${githubSvg}
+                                    ${repo.name}
+                                </h3>
+                                <span class="badge ${badgeClass}">${badgeText}</span>
+                            </div>
+                            <p>${desc}</p>
+                            ${statsHtml}
+                        </div>
+                        <div class="github-card-footer">
+                            <div class="github-tech">
+                                <span class="github-tech-dot" style="background: ${dotColor}; box-shadow: 0 0 8px ${dotColor};"></span>
+                                <span>${techText}</span>
+                            </div>
+                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            if (syncText) {
+                syncText.textContent = `Synchronisé en direct (${displayRepos.length} dépôts actifs)`;
+            }
+        };
+
+        // 1. Lecture du cache local si valide (chargement instantané 0ms)
+        const cachedData = localStorage.getItem(GITHUB_CACHE_KEY);
+        const cachedTime = localStorage.getItem(GITHUB_CACHE_TIME_KEY);
+        const isCacheValid = cachedData && cachedTime && (Date.now() - parseInt(cachedTime, 10) < GITHUB_CACHE_TTL);
+
+        if (isCacheValid) {
+            try {
+                const repos = JSON.parse(cachedData);
+                renderRepos(repos);
+            } catch (e) {
+                console.warn('Erreur lecture cache GitHub:', e);
+            }
+        }
+
+        // 2. Requête API GitHub en tâche de fond pour mettre à jour les données
+        fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`, {
+            headers: { 'Accept': 'application/vnd.github.v3+json' }
+        })
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.json();
+        })
+        .then(repos => {
+            if (Array.isArray(repos) && repos.length > 0) {
+                localStorage.setItem(GITHUB_CACHE_KEY, JSON.stringify(repos));
+                localStorage.setItem(GITHUB_CACHE_TIME_KEY, Date.now().toString());
+                renderRepos(repos);
+            }
+        })
+        .catch(err => {
+            console.info('Utilisation du cache ou rendu HTML par défaut.');
+        });
+    };
+
+    initGitHubReposAutomation();
 });
