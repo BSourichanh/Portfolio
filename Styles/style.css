@@ -640,6 +640,48 @@ header:hover {
     height: 100%;
     object-fit: cover;
     clip-path: var(--clip-corner-md);
+    transition: filter 0.15s ease;
+}
+
+/* Tactile Click / Press Glitch on Avatar */
+.hero-avatar-frame.avatar-glitch-active {
+    animation: avatarClickGlitch 0.24s steps(2) forwards !important;
+}
+
+.hero-avatar-frame.avatar-glitch-active .hero-avatar {
+    filter: contrast(180%) brightness(1.25) saturate(1.8) hue-rotate(-25deg);
+}
+
+@keyframes avatarClickGlitch {
+    0% {
+        transform: translate(0, 0) skew(0deg);
+        filter: drop-shadow(0 0 15px #ff003c);
+    }
+    20% {
+        transform: translate(-6px, 4px) skew(-4deg);
+        filter: drop-shadow(-6px 0 #00f0ff) drop-shadow(6px 0 #ff003c) contrast(160%);
+        clip-path: polygon(0 8%, 100% 0, 95% 90%, 5% 100%);
+    }
+    40% {
+        transform: translate(6px, -4px) skew(5deg);
+        filter: drop-shadow(5px 0 #fcee0a) drop-shadow(-5px 0 #ff003c) invert(25%);
+        clip-path: polygon(5% 0, 95% 5%, 100% 85%, 0 95%);
+    }
+    60% {
+        transform: translate(-4px, 2px) skew(-3deg);
+        filter: drop-shadow(-4px 0 #ff003c) drop-shadow(4px 0 #00f0ff) hue-rotate(90deg);
+        clip-path: polygon(0 0, 100% 5%, 95% 95%, 5% 100%);
+    }
+    80% {
+        transform: translate(3px, -2px) skew(2deg);
+        filter: drop-shadow(3px 0 #ff003c);
+        clip-path: var(--clip-corner-md);
+    }
+    100% {
+        transform: translate(0, 0) skew(0deg);
+        filter: none;
+        clip-path: var(--clip-corner-md);
+    }
 }
 
 .hero-badge-float {
@@ -668,6 +710,36 @@ header:hover {
     background: var(--neon-pink);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--neon-pink);
+    animation: badgeDotBlink 1.2s ease-in-out infinite;
+}
+
+#hero-badge-text {
+    display: inline-block;
+    animation: badgeWarningBlink 1.2s ease-in-out infinite;
+}
+
+@keyframes badgeWarningBlink {
+    0%, 45%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(255, 42, 133, 0.9), 0 0 16px rgba(255, 42, 133, 0.5);
+    }
+    55%, 85% {
+        opacity: 0.2;
+        text-shadow: none;
+    }
+}
+
+@keyframes badgeDotBlink {
+    0%, 45%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--neon-pink);
+        transform: scale(1);
+    }
+    55%, 85% {
+        opacity: 0.25;
+        box-shadow: 0 0 2px var(--neon-pink);
+        transform: scale(0.85);
+    }
 }
 
 /* ==========================================================================
@@ -1593,6 +1665,135 @@ textarea.form-control {
     transform: scale(1.15);
 }
 
+.modal-cover-img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    clip-path: var(--clip-corner-md);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.modal-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.modal-gallery-card {
+    padding: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    clip-path: var(--clip-corner-sm);
+    transition: var(--transition);
+}
+
+.modal-gallery-card:hover {
+    border-color: var(--neon-pink);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 42, 133, 0.25);
+}
+
+.modal-gallery-img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    clip-path: var(--clip-corner-sm);
+    display: block;
+}
+
+.modal-gallery-caption {
+    font-size: 0.82rem;
+    color: var(--text-pink-light);
+    margin-top: 0.6rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   UTILITY & HELPER CLASSES (Clean Code & Convention)
+   ========================================================================== */
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.05rem;
+}
+
+.btn-md {
+    padding: 0.9rem 2.2rem;
+    font-size: 1rem;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.mt-lg {
+    margin-top: 3.5rem;
+}
+
+.mt-md {
+    margin-top: 2rem;
+}
+
+.mb-sm {
+    margin-bottom: 1rem;
+}
+
+.mb-md {
+    margin-bottom: 1.5rem;
+}
+
+.mb-lg {
+    margin-bottom: 2rem;
+}
+
+.contact-sub-email {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.contact-social-svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+}
+
+.github-btn-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+    vertical-align: text-bottom;
+}
+
+.github-tech-dot.tech-pink {
+    background: var(--neon-pink);
+    box-shadow: 0 0 8px var(--neon-pink);
+}
+
+.github-tech-dot.tech-violet {
+    background: var(--neon-violet);
+    box-shadow: 0 0 8px var(--neon-violet);
+}
+
+.github-tech-dot.tech-cyan {
+    background: var(--neon-cyan);
+    box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.footer-cv-link {
+    color: var(--text-pink);
+    font-weight: 700;
+}
+
+.footer-back-top {
+    color: var(--text-pink);
+}
+
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
@@ -1688,6 +1889,7 @@ textarea.form-control {
     }
 }
 
+@media (max-width: 768px) {
     .hero-title {
         font-size: 2.5rem;
     }
@@ -1709,107 +1911,655 @@ textarea.form-control {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    #bg-canvas {
+        opacity: 0.35;
+    }
+}
+
 /* ==========================================================================
-   CYBERPUNK RED HACKED MODE (EASTER EGG 10 CLICS)
+   CYBERPUNK GLITCH & ROOT BREACH OVERHAUL (EASTER EGG 10 CLICS)
    ========================================================================== */
+
+/* Variables globales du mode Hacked : Bascule intégrale du thème Blackwall */
 body.system-hacked {
+    background-color: #010003 !important;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(20, 0, 8, 0.7) 0%, #010003 100%),
+        repeating-linear-gradient(0deg, rgba(255, 0, 50, 0.025) 0px, rgba(255, 0, 50, 0.025) 1px, transparent 1px, transparent 3px) !important;
+    background-size: 100% 100%, 100% 3px !important;
+    background-attachment: fixed !important;
+    font-family: 'JetBrains Mono', 'Consolas', monospace !important;
+    cursor: crosshair !important;
+
+    --bg-primary: #010206;
+    --bg-secondary: #080205;
+    --bg-card: rgba(12, 2, 6, 0.85);
+    --bg-card-hover: rgba(28, 4, 12, 0.95);
+    --bg-glass: rgba(10, 1, 4, 0.92);
+
     --neon-pink: #ff003c;
-    --neon-pink-bright: #ff1a1a;
-    --neon-blue: #dc2626;
-    --neon-violet: #b91c1c;
-    --border-color: rgba(255, 0, 60, 0.45);
+    --neon-pink-bright: #ff1a40;
+    --neon-pink-light: #ff4d6d;
+    --neon-pink-soft: #f43f5e;
+    --neon-violet: #ff0055;
+    --neon-blue: #ff003c;
+    --neon-cyan: #fcee0a;
+    --neon-yellow: #fcee0a;
+    --neon-green: #00ff66;
+
+    --text-primary: #ffffff;
+    --text-pink: #ff003c;
+    --text-pink-bright: #ff1a40;
+    --text-pink-light: #ff6b81;
+    --text-pink-glow: #ffcdd2;
+    --text-secondary: #fecdd3;
+    --text-muted: #f87171;
+    --text-cyan: #fcee0a;
+    --text-yellow: #fcee0a;
+    --text-violet: #ff0055;
+
+    --border-color: rgba(255, 0, 60, 0.5);
     --border-pink: rgba(255, 0, 60, 0.85);
-    --glow-pink: 0 0 20px rgba(255, 0, 60, 0.8), 0 0 45px rgba(255, 0, 0, 0.5);
-    --glow-blue: 0 0 20px rgba(220, 38, 38, 0.8);
-    --gradient-cyber: linear-gradient(135deg, #ff003c 0%, #7f0000 100%);
-    animation: hackScreenGlitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 2;
+    --border-violet: rgba(255, 0, 85, 0.7);
+    --border-blue: rgba(255, 0, 60, 0.75);
+    --border-yellow: rgba(252, 238, 10, 0.8);
+
+    --gradient-cyber: linear-gradient(135deg, #ff003c 0%, #ff5722 50%, #fcee0a 100%);
+    --gradient-pink-violet: linear-gradient(135deg, #ff003c 0%, #ff0055 100%);
+    --gradient-pink-blue: linear-gradient(135deg, #ff003c 0%, #fcee0a 100%);
+
+    --glow-pink: 0 0 20px rgba(255, 0, 60, 0.85), 0 0 45px rgba(255, 0, 60, 0.45), 0 0 85px rgba(255, 0, 0, 0.3);
+    --glow-blue: 0 0 20px rgba(252, 238, 10, 0.85), 0 0 45px rgba(252, 238, 10, 0.4);
+
+    animation: hackInitGlitch 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-@keyframes hackScreenGlitch {
-    0% { transform: translate(0); filter: contrast(100%); }
-    20% { transform: translate(-4px, 4px); filter: contrast(160%) brightness(1.2); }
-    40% { transform: translate(4px, -4px); filter: contrast(180%); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(2px, 2px); }
-    100% { transform: translate(0); filter: contrast(100%); }
+body.system-hacked a,
+body.system-hacked button,
+body.system-hacked .project-card,
+body.system-hacked .skill-card,
+body.system-hacked .github-card,
+body.system-hacked .hobby-card,
+body.system-hacked .contact-card-box,
+body.system-hacked .filter-btn,
+body.system-hacked .hero-avatar-frame,
+body.system-hacked input,
+body.system-hacked textarea {
+    cursor: pointer !important;
 }
 
-/* Bannière d'alerte piratage */
-.hack-alert-banner {
+@keyframes hackInitGlitch {
+    0% { transform: translate(0); filter: contrast(100%) hue-rotate(0deg); }
+    15% { transform: translate(-6px, 3px); filter: contrast(180%) brightness(1.3) hue-rotate(90deg); }
+    30% { transform: translate(6px, -4px); filter: contrast(200%) brightness(0.8); }
+    50% { transform: translate(-3px, -3px); filter: contrast(150%); }
+    70% { transform: translate(4px, 2px); filter: contrast(170%); }
+    85% { transform: translate(-2px, 1px); }
+    100% { transform: translate(0); filter: contrast(100%) hue-rotate(0deg); }
+}
+
+/* Glitch Overlay Layer */
+.hack-glitch-overlay {
+    display: none;
     position: fixed;
-    top: 85px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-30px);
-    z-index: 10000;
-    background: rgba(20, 0, 5, 0.94);
-    border: 2px solid #ff003c;
-    border-radius: 12px;
-    box-shadow: 0 0 30px rgba(255, 0, 60, 0.75), inset 0 0 20px rgba(255, 0, 0, 0.35);
-    backdrop-filter: blur(16px);
-    padding: 0.9rem 1.6rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    color: #ffffff;
-    font-family: 'Fira Code', monospace, sans-serif;
-    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    max-width: 92vw;
+    z-index: 9998;
 }
 
-body.system-hacked .hack-alert-banner {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-    animation: hackBannerPulse 2s infinite ease-in-out;
+body.system-hacked .hack-glitch-overlay {
+    display: block;
 }
 
-@keyframes hackBannerPulse {
-    0%, 100% { box-shadow: 0 0 25px rgba(255, 0, 60, 0.6), inset 0 0 15px rgba(255, 0, 0, 0.2); }
-    50% { box-shadow: 0 0 45px rgba(255, 0, 60, 0.95), inset 0 0 25px rgba(255, 0, 0, 0.5); }
+.glitch-scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 60, 0.05),
+        rgba(255, 0, 60, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity: 0.85;
+    animation: scanlineSweep 8s linear infinite;
 }
 
-.hack-alert-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+@keyframes scanlineSweep {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
 }
 
-.hack-alert-title {
-    font-size: 1rem;
-    font-weight: 800;
+.glitch-tear-bar {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 0, 60, 0.4);
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.8), 0 0 30px #fcee0a;
+    top: -10px;
+    animation: glitchTearSweep 4.5s infinite ease-in-out;
+}
+
+@keyframes glitchTearSweep {
+    0%, 100% { top: -20px; opacity: 0; }
+    12% { top: 25%; opacity: 0.85; height: 12px; transform: scaleX(1.02); }
+    14% { top: 28%; opacity: 0; }
+    55% { top: 72%; opacity: 0.9; height: 4px; transform: scaleX(0.98); }
+    57% { top: 75%; opacity: 0; }
+    88% { top: 45%; opacity: 0.7; height: 8px; }
+    90% { top: 48%; opacity: 0; }
+}
+
+.glitch-hud-left,
+.glitch-hud-right {
+    position: fixed;
+    bottom: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     color: #ff003c;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(255, 0, 60, 0.8);
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #ff003c;
+    background: rgba(10, 0, 4, 0.85);
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(255, 0, 60, 0.6);
+    clip-path: var(--clip-corner-sm);
+    z-index: 9999;
 }
 
-.hack-alert-desc {
-    font-size: 0.82rem;
-    color: #fca5a5;
-    margin: 0;
+.glitch-hud-left { left: 1rem; }
+.glitch-hud-right { right: 1rem; }
+
+/* CRT Flash Effect on Reboot */
+.hack-crt-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    z-index: 100000;
+    pointer-events: none;
+    opacity: 0;
 }
 
-.hack-reboot-btn {
+.hack-crt-flash.flash-active {
+    animation: crtRebootAnim 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes crtRebootAnim {
+    0% { opacity: 0; transform: scale(1); }
+    20% { opacity: 1; transform: scaleY(0.005) scaleX(1); background: #ff003c; }
+    50% { opacity: 1; transform: scaleY(0.005) scaleX(0.3); background: #ffffff; }
+    75% { opacity: 0.8; transform: scaleY(0.005) scaleX(0.05); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+/* RGB Split Glitch effect on Headers */
+body.system-hacked .hero-title,
+body.system-hacked .section-title,
+body.system-hacked .nav-logo {
+    text-shadow: 2.5px 0 #ff003c, -2.5px 0 #00f0ff, 0 0 20px rgba(255, 0, 60, 0.85) !important;
+    animation: glitchTextJitter 2.5s infinite steps(2, jump-none);
+}
+
+@keyframes glitchTextJitter {
+    0%, 92%, 100% {
+        transform: translate(0, 0) skew(0deg);
+        text-shadow: 2px 0 #ff003c, -2px 0 #00f0ff, 0 0 20px rgba(255, 0, 60, 0.85);
+    }
+    93% {
+        transform: translate(-3px, 1px) skew(-2deg);
+        text-shadow: -3px 0 #ff003c, 3px 0 #fcee0a;
+    }
+    95% {
+        transform: translate(3px, -2px) skew(3deg);
+        text-shadow: 4px 0 #00f0ff, -4px 0 #ff003c;
+    }
+    97% {
+        transform: translate(-1px, 2px) skew(-1deg);
+        text-shadow: -2px 0 #ff003c, 2px 0 #fcee0a;
+    }
+}
+
+body.system-hacked .section-subtitle {
+    color: #fcee0a !important;
+    text-shadow: 0 0 10px rgba(252, 238, 10, 0.45);
+}
+
+body.system-hacked .section-subtitle::before {
+    color: #ff003c !important;
+    text-shadow: 0 0 8px rgba(255, 0, 60, 0.8);
+}
+
+/* Cyber Reticle & Click Counter on Profile Picture */
+.hero-avatar-frame {
+    position: relative;
+}
+
+.avatar-hack-counter {
+    position: absolute;
+    top: -12px;
+    right: -12px;
     background: #ff003c;
     color: #ffffff;
-    border: none;
-    padding: 0.5rem 1.1rem;
-    font-weight: 700;
-    font-size: 0.82rem;
-    border-radius: 6px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: all 0.25s ease;
-    box-shadow: 0 0 15px rgba(255, 0, 60, 0.6);
-    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    box-shadow: 0 0 12px #ff003c;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 10;
+    letter-spacing: 0.5px;
 }
 
-.hack-reboot-btn:hover {
-    background: #ffffff;
+.avatar-hack-counter.active {
+    opacity: 1;
+    transform: scale(1);
+    animation: counterPop 0.3s ease;
+}
+
+@keyframes counterPop {
+    0% { transform: scale(0.6); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.avatar-reticle {
+    display: none;
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px dashed #ff003c;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: reticleSpin 8s linear infinite;
+}
+
+body.system-hacked .avatar-reticle {
+    display: block;
+}
+
+@keyframes reticleSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   THEME 2: CYBERPUNK HACK TERMINAL (DEEP CONTRAST & MECHANICAL GEOMETRY)
+   ========================================================================== */
+
+/* Command Prompt prefix on Section Titles */
+body.system-hacked .section-title::before {
+    content: '>_ ';
+    color: #00ff66;
+    font-weight: 900;
+    text-shadow: 0 0 10px #00ff66;
+}
+
+/* Hacked Card Styling: Sharp Angles, Technical Corner Crosshairs, Terminal Charcoal */
+body.system-hacked .project-card,
+body.system-hacked .skill-card,
+body.system-hacked .github-card,
+body.system-hacked .timeline-item,
+body.system-hacked .hobby-card,
+body.system-hacked .contact-card-box,
+body.system-hacked .modal-box {
+    border-radius: 0px !important;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)) !important;
+    border: 1px solid rgba(255, 0, 60, 0.6) !important;
+    background: rgba(8, 2, 5, 0.94) !important;
+    box-shadow: 0 0 25px rgba(255, 0, 60, 0.25), inset 0 0 20px rgba(255, 0, 60, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    position: relative;
+}
+
+/* Technical Corner Crosshairs on Cards */
+body.system-hacked .project-card::before,
+body.system-hacked .skill-card::before,
+body.system-hacked .github-card::before,
+body.system-hacked .timeline-item::before,
+body.system-hacked .hobby-card::before,
+body.system-hacked .contact-card-box::before {
+    content: '+';
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    font-family: var(--font-mono);
     color: #ff003c;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-    transform: scale(1.05);
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 5;
+}
+
+body.system-hacked .project-card::after,
+body.system-hacked .skill-card::after,
+body.system-hacked .github-card::after,
+body.system-hacked .timeline-item::after,
+body.system-hacked .hobby-card::after,
+body.system-hacked .contact-card-box::after {
+    content: '+';
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+    font-family: var(--font-mono);
+    color: #fcee0a;
+    font-size: 13px;
+    font-weight: 900;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Real Glitch & Distortion Keyframes for Interactive Elements */
+@keyframes cyberCardDistort {
+    0% {
+        transform: translate(0, 0) skew(0deg);
+    }
+    15% {
+        transform: translate(-5px, 2px) skew(-2deg);
+        filter: url(#cyber-distortion) drop-shadow(6px 0 0 rgba(255, 0, 60, 0.8)) drop-shadow(-6px 0 0 rgba(0, 240, 255, 0.8));
+    }
+    35% {
+        transform: translate(6px, -3px) skew(2.5deg);
+        filter: url(#cyber-distortion-strong) drop-shadow(-6px 0 0 rgba(255, 0, 60, 0.8)) drop-shadow(6px 0 0 rgba(252, 238, 10, 0.8));
+    }
+    60% {
+        transform: translate(-3px, 1px) skew(-1deg);
+        filter: url(#cyber-distortion) drop-shadow(4px 0 0 rgba(255, 0, 60, 0.7));
+    }
+    85% {
+        transform: translate(2px, -1px) skew(0.5deg);
+    }
+    100% {
+        transform: translate(0, 0) skew(0deg);
+    }
+}
+
+@keyframes cyberLaserScan {
+    0% { transform: translateY(-100%); opacity: 0; }
+    30% { opacity: 0.9; }
+    70% { opacity: 0.9; }
+    100% { transform: translateY(350%); opacity: 0; }
+}
+
+@keyframes btnGlitchDistort {
+    0% { transform: translate(0, 0) skew(0deg); }
+    20% { transform: translate(-4px, 2px) skew(-3deg); filter: url(#cyber-distortion); }
+    40% { transform: translate(4px, -2px) skew(3deg); filter: url(#cyber-distortion); }
+    60% { transform: translate(-3px, 1px) skew(-1.5deg); filter: none; }
+    80% { transform: translate(3px, -1px) skew(1.5deg); }
+    100% { transform: translate(0, 0) skew(0deg); }
+}
+
+body.system-hacked .project-card,
+body.system-hacked .skill-card,
+body.system-hacked .github-card,
+body.system-hacked .timeline-item,
+body.system-hacked .hobby-card,
+body.system-hacked .contact-card-box {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+
+body.system-hacked .project-card:hover,
+body.system-hacked .skill-card:hover,
+body.system-hacked .github-card:hover,
+body.system-hacked .hobby-card:hover,
+body.system-hacked .contact-card-box:hover {
+    border-color: #fcee0a !important;
+    box-shadow: 0 0 35px rgba(255, 0, 60, 0.95), 0 0 20px rgba(252, 238, 10, 0.85), inset 0 0 25px rgba(255, 0, 60, 0.35) !important;
+    animation: cyberCardDistort 0.4s ease !important;
+    filter: drop-shadow(5px 0 0 rgba(255, 0, 60, 0.6)) drop-shadow(-5px 0 0 rgba(0, 240, 255, 0.6));
+}
+
+/* Diagonal Laser Scanline on Card Hover */
+body.system-hacked .project-card:hover::after,
+body.system-hacked .skill-card:hover::after,
+body.system-hacked .github-card:hover::after,
+body.system-hacked .timeline-item:hover::after,
+body.system-hacked .hobby-card:hover::after,
+body.system-hacked .contact-card-box:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff003c 25%, #fcee0a 50%, #ff003c 75%, transparent);
+    box-shadow: 0 0 15px #ff003c, 0 0 30px #fcee0a;
+    animation: cyberLaserScan 1.1s infinite linear;
+    pointer-events: none;
+    z-index: 15;
+}
+
+body.system-hacked .project-card:hover .project-card-image img {
+    filter: url(#cyber-distortion) contrast(1.4) brightness(1.2) drop-shadow(5px 0 0 #ff003c) drop-shadow(-5px 0 0 #00f0ff) !important;
+    transform: scale(1.06) !important;
+}
+
+/* Navigation Terminal Header */
+body.system-hacked header {
+    border-color: #ff003c !important;
+    box-shadow: 0 10px 35px rgba(255, 0, 60, 0.45), inset 0 0 20px rgba(255, 0, 60, 0.25) !important;
+    background: rgba(4, 1, 3, 0.98) !important;
+    border-radius: 0px !important;
+}
+
+body.system-hacked .nav-logo {
+    color: #ff003c !important;
+    font-family: var(--font-mono) !important;
+    letter-spacing: 1px !important;
+}
+
+body.system-hacked .nav-link {
+    font-family: var(--font-mono) !important;
+    letter-spacing: 1px !important;
+    transition: all 0.15s ease !important;
+}
+
+body.system-hacked .nav-link:hover,
+body.system-hacked .nav-link.active {
+    color: #fcee0a !important;
+    text-shadow: 2.5px 0 #ff003c, -2.5px 0 #00f0ff, 0 0 16px #fcee0a !important;
+    border-bottom: 2px solid #ff003c !important;
+    transform: translateY(-2px) !important;
+    animation: btnGlitchDistort 0.28s infinite steps(2) !important;
+}
+
+/* Buttons in Cyberpunk Mode */
+body.system-hacked .btn,
+body.system-hacked .btn-primary,
+body.system-hacked .btn-outline,
+body.system-hacked .nav-btn-cv,
+body.system-hacked .filter-btn {
+    border-radius: 0px !important;
+    clip-path: var(--clip-btn) !important;
+    font-family: var(--font-mono) !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    position: relative !important;
+    transition: all 0.15s ease !important;
+}
+
+body.system-hacked .btn-primary {
+    background: linear-gradient(135deg, #ff003c 0%, #ff5722 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 25px rgba(255, 0, 60, 0.8), 0 0 45px rgba(255, 0, 60, 0.4) !important;
+    border: 1px solid #fcee0a !important;
+}
+
+body.system-hacked .btn-primary:hover {
+    background: #fcee0a !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    border-color: #ff003c !important;
+    box-shadow: 4px 4px 0 #ff003c, -4px -4px 0 #00f0ff, 0 0 35px #fcee0a !important;
+    animation: btnGlitchDistort 0.22s infinite steps(2) !important;
+    text-shadow: 2px 0 #ff003c, -2px 0 #00f0ff !important;
+}
+
+body.system-hacked .btn-outline {
+    border: 1px solid #ff003c !important;
+    color: #fcee0a !important;
+    background: rgba(255, 0, 60, 0.1) !important;
+}
+
+body.system-hacked .btn-outline:hover {
+    background: #ff003c !important;
+    color: #ffffff !important;
+    border-color: #fcee0a !important;
+    box-shadow: 4px 4px 0 #fcee0a, -4px -4px 0 #00f0ff, 0 0 30px #ff003c !important;
+    animation: btnGlitchDistort 0.22s infinite steps(2) !important;
+}
+
+body.system-hacked .nav-btn-cv:hover {
+    background: #fcee0a !important;
+    color: #000000 !important;
+    border-color: #ff003c !important;
+    box-shadow: 4px 4px 0 #ff003c, -4px -4px 0 #00f0ff, 0 0 25px #fcee0a !important;
+    animation: btnGlitchDistort 0.22s infinite steps(2) !important;
+}
+
+/* Active Click Distortion on Buttons */
+body.system-hacked .btn:active,
+body.system-hacked .btn-primary:active,
+body.system-hacked .btn-outline:active,
+body.system-hacked .nav-btn-cv:active,
+body.system-hacked .filter-btn:active {
+    filter: url(#cyber-distortion-strong) !important;
+    transform: scale(0.96) skew(-2deg) !important;
+}
+
+/* Badges & Tags in Cyberpunk Mode */
+body.system-hacked .badge-cyan,
+body.system-hacked .badge-pink,
+body.system-hacked .badge-violet,
+body.system-hacked .badge-secondary,
+body.system-hacked .project-tag,
+body.system-hacked .skill-tag,
+body.system-hacked .tech-tag,
+body.system-hacked .hobby-tag {
+    border-radius: 0px !important;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)) !important;
+    background: rgba(255, 0, 60, 0.18) !important;
+    border: 1px solid #ff003c !important;
+    color: #fcee0a !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.8px !important;
+    text-transform: uppercase !important;
+    transition: all 0.15s ease !important;
+}
+
+body.system-hacked .badge:hover,
+body.system-hacked .tech-tag:hover,
+body.system-hacked .hobby-tag:hover,
+body.system-hacked .timeline-year:hover {
+    background: #ff003c !important;
+    color: #000000 !important;
+    font-weight: 900 !important;
+    border-color: #fcee0a !important;
+    box-shadow: 0 0 15px #ff003c, 0 0 25px #fcee0a !important;
+    transform: scale(1.1) skew(-2deg) !important;
+}
+
+body.system-hacked .filter-btn {
+    border-radius: 0px !important;
+    clip-path: var(--clip-btn) !important;
+    font-family: var(--font-mono) !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    border: 1px solid rgba(255, 0, 60, 0.6) !important;
+    background: rgba(10, 2, 5, 0.95) !important;
+    color: #fca5a5 !important;
+    transition: all 0.15s ease !important;
+}
+
+body.system-hacked .filter-btn.active,
+body.system-hacked .filter-btn:hover {
+    background: repeating-linear-gradient(45deg, rgba(255, 0, 60, 0.35), rgba(255, 0, 60, 0.35) 8px, rgba(252, 238, 10, 0.25) 8px, rgba(252, 238, 10, 0.25) 16px) !important;
+    color: #fcee0a !important;
+    border-color: #fcee0a !important;
+    box-shadow: 4px 4px 0 #ff003c, -4px -4px 0 #00f0ff, 0 0 25px #ff003c !important;
+    animation: btnGlitchJitter 0.22s infinite steps(2) !important;
+}
+
+/* Form Inputs in Cyberpunk Mode */
+body.system-hacked .form-input,
+body.system-hacked .form-textarea {
+    border-radius: 0px !important;
+    background: #020306 !important;
+    border: 1px solid #ff003c !important;
+    color: #00ff66 !important;
+    font-family: var(--font-mono) !important;
+    letter-spacing: 0.8px !important;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9) !important;
+    transition: all 0.2s ease !important;
+}
+
+body.system-hacked .form-input:focus,
+body.system-hacked .form-textarea:focus {
+    border-color: #fcee0a !important;
+    box-shadow: 0 0 25px rgba(252, 238, 10, 0.7), inset 0 0 12px rgba(255, 0, 60, 0.4) !important;
+    background: #070104 !important;
+    outline: none !important;
+    animation: cyberCardGlitch 0.3s ease !important;
+}
+
+body.system-hacked .form-group label {
+    font-family: var(--font-mono) !important;
+    color: #fcee0a !important;
+    text-shadow: 0 0 8px rgba(252, 238, 10, 0.5) !important;
+    letter-spacing: 0.5px !important;
+}
+
+body.system-hacked .form-group label::before {
+    content: 'root@aurora:~# ';
+    color: #ff003c;
+    font-weight: 700;
+}
+
+/* Custom Cyberpunk Scrollbar & Selection */
+body.system-hacked::-webkit-scrollbar {
+    width: 9px;
+}
+body.system-hacked::-webkit-scrollbar-track {
+    background: #010206;
+}
+body.system-hacked::-webkit-scrollbar-thumb {
+    background: #ff003c;
+    box-shadow: 0 0 10px #ff003c;
+}
+body.system-hacked::-webkit-scrollbar-thumb:hover {
+    background: #fcee0a;
+}
+body.system-hacked ::selection {
+    background: #ff003c !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 8px #ffffff !important;
 }
 
 /* Avatar Frame piraté */
@@ -1828,9 +2578,40 @@ body.system-hacked .hero-badge-float {
     background: rgba(40, 0, 10, 0.9) !important;
     border-color: #ff003c !important;
     box-shadow: 0 0 15px rgba(255, 0, 60, 0.7) !important;
+    color: #ff003c !important;
 }
 
 body.system-hacked .hero-badge-float .dot {
     background: #ff003c !important;
     box-shadow: 0 0 10px #ff003c !important;
+    animation: badgeDotBlinkHacked 1.2s ease-in-out infinite !important;
+}
+
+body.system-hacked #hero-badge-text {
+    color: #ff003c !important;
+    animation: badgeWarningBlinkHacked 1.2s ease-in-out infinite !important;
+}
+
+@keyframes badgeWarningBlinkHacked {
+    0%, 45%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 8px rgba(255, 0, 60, 0.9), 0 0 16px rgba(255, 0, 60, 0.5);
+    }
+    55%, 85% {
+        opacity: 0.2;
+        text-shadow: none;
+    }
+}
+
+@keyframes badgeDotBlinkHacked {
+    0%, 45%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px #ff003c;
+        transform: scale(1);
+    }
+    55%, 85% {
+        opacity: 0.25;
+        box-shadow: 0 0 2px #ff003c;
+        transform: scale(0.85);
+    }
 }

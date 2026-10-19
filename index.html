@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bernard Sourichanh | Concepteur & Développeur IA & Game Programmer</title>
-    <meta name="description" content="Portfolio de Bernard Sourichanh - Concepteur & Développeur pratique IA en recherche d'alternance, Game Programmer et Game Designer spécialisé sur Unreal Engine, Unity, Java, C# et SQL.">
-    <meta name="keywords" content="Bernard Sourichanh, CV, Portfolio, Développeur Full-Stack, Alternance, Concepteur Développeur IA, Game Programmer, Unity, Unreal Engine, C#, Java, SQL">
+    <meta name="description"
+        content="Portfolio de Bernard Sourichanh - Concepteur & Développeur pratique IA en recherche d'alternance, Game Programmer et Game Designer spécialisé sur Unreal Engine, Unity, Java, C# et SQL.">
+    <meta name="keywords"
+        content="Bernard Sourichanh, CV, Portfolio, Développeur Full-Stack, Alternance, Concepteur Développeur IA, Game Programmer, Unity, Unreal Engine, C#, Java, SQL">
     <meta name="author" content="Bernard Sourichanh">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bernard Sourichanh | Concepteur & Développeur IA & Game Programmer">
+    <meta property="og:description"
+        content="Portfolio de Bernard Sourichanh - Concepteur & Développeur pratique IA en recherche d'alternance, Game Programmer et Game Designer.">
+    <meta property="og:image" content="Images/pp.jpeg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bernard Sourichanh | Concepteur & Développeur IA & Game Programmer">
+    <meta name="twitter:description"
+        content="Portfolio de Bernard Sourichanh - Concepteur & Développeur pratique IA en recherche d'alternance.">
+    <meta name="twitter:image" content="Images/pp.jpeg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+        rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="Styles/style.css">
     <link rel="icon" type="image/png" href="Images/avatar_game.png">
 </head>
+
 <body>
+    <!-- Fond animé interactif Canvas 2D Cyberpunk -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
     <!-- Header / Barre de navigation One-Page -->
     <header>
@@ -45,31 +67,52 @@
         </div>
     </header>
 
-    <!-- Bannière Alerte Piratage Rouge (Easter Egg 10 clics sur l'avatar) -->
-    <div id="hack-alert-banner" class="hack-alert-banner" role="alert">
-        <div class="hack-alert-content">
-            <div class="hack-alert-title">
-                <span>⚠️ [SYSTEM BREACH : ROOT OVERRIDE]</span>
-            </div>
-            <p class="hack-alert-desc">ACCÈS NON AUTORISÉ DÉTECTÉ // PROTOCOLE CYBER ROUGE ACTIVÉ</p>
-        </div>
-        <button id="hack-reboot-btn" class="hack-reboot-btn">RESTAURER LE SYSTÈME</button>
+    <!-- Glitch Overlay Layer (Scanlines, CRT flicker, Glitch bars) -->
+    <div id="hack-glitch-overlay" class="hack-glitch-overlay" aria-hidden="true">
+        <div class="glitch-scanlines"></div>
+        <div class="glitch-tear-bar"></div>
+        <div class="glitch-hud-left">[NODE: 127.0.0.1 // ROOT_EXPLOIT]</div>
+        <div class="glitch-hud-right">CYBERPUNK GLITCH PROTOCOL v2.6</div>
     </div>
+
+    <!-- CRT Power Down Flash Overlay -->
+    <div id="hack-crt-flash" class="hack-crt-flash" aria-hidden="true"></div>
+
+    <!-- SVG Glitch & Wave Distortion Filters for Cyberpunk Hack Theme -->
+    <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+        <defs>
+            <filter id="cyber-distortion">
+                <feTurbulence type="fractalNoise" baseFrequency="0.04 0.95" numOctaves="1" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="cyber-distortion-strong">
+                <feTurbulence type="fractalNoise" baseFrequency="0.02 0.8" numOctaves="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="22" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+        </defs>
+    </svg>
 
     <main>
         <!-- 1. Hero Section -->
         <section id="hero" class="hero">
             <div class="container hero-grid">
                 <div class="hero-content">
-                    <p class="hero-tagline">Recherche Alternance — Concepteur & Développeur IA / Full-Stack</p>
-                    <h1 class="hero-title">BERNARD <span>SOURICHANH</span></h1>
-                    <h2 class="hero-subtitle">Concepteur & Développeur Pratique IA / Game Programmer</h2>
+                    <p class="hero-tagline" id="hero-tagline">Recherche Alternance — Concepteur & Développeur IA /
+                        Full-Stack</p>
+                    <h1 class="hero-title" id="hero-title">BERNARD <span>SOURICHANH</span></h1>
+                    <h2 class="hero-subtitle" id="hero-subtitle">Concepteur & Développeur Pratique IA / Game Programmer
+                    </h2>
                     <p class="hero-description">
-                        En formation <strong>RNCP Niveau 6</strong> au <em>Campus Numérique in the Alps</em>, je recherche une <strong>alternance</strong> en tant que développeur full-stack (Web / Application / IA) ou en Game Programming. Passionné par la conception d'architectures logicielles, les moteurs temps réel (<strong>Unreal Engine</strong>, <strong>Unity</strong>) et la programmation <strong>Java</strong>, <strong>C# (.NET)</strong>, <strong>C++</strong> et <strong>SQL</strong>.
+                        En formation <strong>RNCP Niveau 6</strong> au <em>Campus Numérique in the Alps</em>, je
+                        recherche une <strong>alternance</strong> en tant que développeur full-stack (Web / Application
+                        / IA) ou en Game Programming. Passionné par la conception d'architectures logicielles, les
+                        moteurs temps réel (<strong>Unreal Engine</strong>, <strong>Unity</strong>) et la programmation
+                        <strong>Java</strong>, <strong>C# (.NET)</strong>, <strong>C++</strong> et <strong>SQL</strong>.
                     </p>
-                    
+
                     <div class="hero-cta">
-                        <a href="CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">📄 Télécharger mon CV (PDF)</a>
+                        <a href="CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">📄
+                            Télécharger mon CV (PDF)</a>
                         <a href="#projets" class="btn btn-outline">Explorer mes projets</a>
                         <a href="#contact" class="btn btn-secondary">Me contacter</a>
                     </div>
@@ -91,12 +134,16 @@
                 </div>
 
                 <div class="hero-image-wrapper">
-                    <div class="hero-avatar-frame">
+                    <div class="hero-avatar-frame" id="hero-avatar-frame" role="button" tabindex="0"
+                        title="Bernard Sourichanh [Thème Aurora]">
                         <img src="Images/pp.jpeg" alt="Bernard Sourichanh Photo" class="hero-avatar">
                         <div class="hero-badge-float">
                             <span class="dot"></span>
-                            <span>En recherche active d'alternance</span>
+                            <span id="hero-badge-text">Don't click me</span>
                         </div>
+                        <div class="avatar-hack-counter" id="avatar-hack-counter" aria-hidden="true">[CYBERPUNK: 0/10]
+                        </div>
+                        <div class="avatar-reticle" aria-hidden="true"></div>
                     </div>
                 </div>
             </div>
@@ -106,8 +153,9 @@
         <section id="a-propos">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">Parcours & Formations</h2>
-                    <p class="section-subtitle">Mon expérience professionnelle, mes diplômes académiques et mon curriculum vitae</p>
+                    <h2 class="section-title" id="title-apropos">Parcours & Formations</h2>
+                    <p class="section-subtitle" id="subtitle-apropos">Mon expérience professionnelle, mes diplômes académiques et mon
+                        curriculum vitae</p>
                 </div>
 
                 <div class="timeline-grid">
@@ -120,7 +168,8 @@
                                 <h4 class="timeline-title">RNCP Niveau 6 — Concepteur & Développeur Pratique IA</h4>
                                 <div class="timeline-subtitle">Le Campus Numérique in the Alps</div>
                                 <p class="timeline-body">
-                                    Formation approfondie en conception logicielle, architectures d'applications, intégration de modèles d'IA, développement full-stack et gestion de projets agiles.
+                                    Formation approfondie en conception logicielle, architectures d'applications,
+                                    intégration de modèles d'IA, développement full-stack et gestion de projets agiles.
                                 </p>
                             </div>
 
@@ -129,7 +178,9 @@
                                 <h4 class="timeline-title">Bachelor Game Developer & Game Designer</h4>
                                 <div class="timeline-subtitle">Human Academy — Angoulême</div>
                                 <p class="timeline-body">
-                                    Formation intensive en programmation de jeux vidéo (C#, C++, UE4, Unity), game design, level design, mathématiques appliquées aux jeux et gestion de projets en équipe.
+                                    Formation intensive en programmation de jeux vidéo (C#, C++, UE4, Unity), game
+                                    design, level design, mathématiques appliquées aux jeux et gestion de projets en
+                                    équipe.
                                 </p>
                             </div>
 
@@ -138,16 +189,19 @@
                                 <h4 class="timeline-title">Expert Informatique</h4>
                                 <div class="timeline-subtitle">Epitech — Lyon</div>
                                 <p class="timeline-body">
-                                    Apprentissage approfondi de la programmation en C, algorithmique avancée, structures de données et méthodologie par projets en autonomie.
+                                    Apprentissage approfondi de la programmation en C, algorithmique avancée, structures
+                                    de données et méthodologie par projets en autonomie.
                                 </p>
                             </div>
 
                             <div class="timeline-item">
                                 <span class="timeline-year">2010 - 2013</span>
                                 <h4 class="timeline-title">BAC Pro SEN (Systèmes Électroniques Numériques)</h4>
-                                <div class="timeline-subtitle">Option Télécommunications & Réseaux — Lycée Saint-Vincent de Paul</div>
+                                <div class="timeline-subtitle">Option Télécommunications & Réseaux — Lycée Saint-Vincent
+                                    de Paul</div>
                                 <p class="timeline-body">
-                                    Fondamentaux des architectures réseaux, protocoles de communication et maintenance des systèmes numériques.
+                                    Fondamentaux des architectures réseaux, protocoles de communication et maintenance
+                                    des systèmes numériques.
                                 </p>
                             </div>
                         </div>
@@ -162,7 +216,9 @@
                                 <h4 class="timeline-title">Développeur Application Mobile</h4>
                                 <div class="timeline-subtitle">Seven Fallen — Lyon</div>
                                 <p class="timeline-body">
-                                    Développement de l'application mobile officielle et tutoriel interactif pour le jeu de cartes <em>Seven Fallen</em> sous Unity. Programmation C#, interfaces tactiles Android/iOS et optimisation.
+                                    Développement de l'application mobile officielle et tutoriel interactif pour le jeu
+                                    de cartes <em>Seven Fallen</em> sous Unity. Programmation C#, interfaces tactiles
+                                    Android/iOS et optimisation.
                                 </p>
                             </div>
 
@@ -171,7 +227,8 @@
                                 <h4 class="timeline-title">Employé Polyvalent</h4>
                                 <div class="timeline-subtitle">Carrefour (Intérim)</div>
                                 <p class="timeline-body">
-                                    Ravitaillement rayon épicerie, gestion des flux et organisation logistique en équipe.
+                                    Ravitaillement rayon épicerie, gestion des flux et organisation logistique en
+                                    équipe.
                                 </p>
                             </div>
 
@@ -180,7 +237,8 @@
                                 <h4 class="timeline-title">Technicien de Maintenance Informatique</h4>
                                 <div class="timeline-subtitle">Fust — Meyrin (Suisse)</div>
                                 <p class="timeline-body">
-                                    Diagnostic matériel et logiciel, dépannage de systèmes, maintenance préventive et curative de parcs informatiques, conseil multimédia.
+                                    Diagnostic matériel et logiciel, dépannage de systèmes, maintenance préventive et
+                                    curative de parcs informatiques, conseil multimédia.
                                 </p>
                             </div>
 
@@ -189,15 +247,16 @@
                                 <h4 class="timeline-title">Technicien de Maintenance</h4>
                                 <div class="timeline-subtitle">S.N.C — Épagny</div>
                                 <p class="timeline-body">
-                                    Support utilisateur, installation d'ordinateurs et réseaux, gestion et sauvegarde des données informatiques.
+                                    Support utilisateur, installation d'ordinateurs et réseaux, gestion et sauvegarde
+                                    des données informatiques.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center" style="margin-top: 3.5rem;">
-                    <a href="CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.05rem;">
+                <div class="text-center mt-lg">
+                    <a href="CV.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
                         📄 Consulter / Télécharger mon CV complet (PDF)
                     </a>
                 </div>
@@ -208,8 +267,8 @@
         <section id="competences">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">Compétences Techniques</h2>
-                    <p class="section-subtitle">Outils, technologies, frameworks et domaines d'expertise</p>
+                    <h2 class="section-title" id="title-competences">Compétences Techniques</h2>
+                    <p class="section-subtitle" id="subtitle-competences">Outils, technologies, frameworks et domaines d'expertise</p>
                 </div>
 
                 <div class="skills-grid">
@@ -268,16 +327,17 @@
         <section id="projets">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">Mes Projets de Jeux</h2>
-                    <p class="section-subtitle">Découvrez une sélection de jeux et applications que j'ai conçus et développés</p>
+                    <h2 class="section-title" id="title-projets">Mes Projets de Jeux</h2>
+                    <p class="section-subtitle" id="subtitle-projets">Découvrez une sélection de jeux et applications que j'ai conçus et
+                        développés</p>
                 </div>
 
                 <!-- Filtres Interactifs de Projets -->
-                <div class="project-filter-bar" style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
-                    <button class="btn btn-outline filter-btn active" data-filter="all" style="padding: 0.4rem 1.1rem; font-size: 0.85rem;">[ Tous les Projets ]</button>
-                    <button class="btn btn-outline filter-btn" data-filter="unreal" style="padding: 0.4rem 1.1rem; font-size: 0.85rem;">Unreal Engine 4</button>
-                    <button class="btn btn-outline filter-btn" data-filter="unity" style="padding: 0.4rem 1.1rem; font-size: 0.85rem;">Unity 3D</button>
-                    <button class="btn btn-outline filter-btn" data-filter="mobile" style="padding: 0.4rem 1.1rem; font-size: 0.85rem;">Mobile / TCG</button>
+                <div class="project-filter-bar" role="toolbar" aria-label="Filtrer les projets">
+                    <button class="btn btn-outline filter-btn active" data-filter="all">[ Tous les Projets ]</button>
+                    <button class="btn btn-outline filter-btn" data-filter="unreal">Unreal Engine 4</button>
+                    <button class="btn btn-outline filter-btn" data-filter="unity">Unity 3D</button>
+                    <button class="btn btn-outline filter-btn" data-filter="mobile">Mobile / TCG</button>
                 </div>
 
                 <div class="projects-grid">
@@ -285,12 +345,14 @@
                     <article class="project-card" data-category="unreal">
                         <div class="project-media">
                             <span class="badge project-badge-top">Projet Solo</span>
-                            <img src="Images/cyber_strike_mockup.png" alt="Cyber Strike FPS Jeu Vidéo" loading="lazy" class="clickable-image">
+                            <img src="Images/cyber_strike_mockup.png" alt="Cyber Strike FPS Jeu Vidéo" loading="lazy"
+                                class="clickable-image">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Cyber Strike</h3>
                             <p class="project-desc">
-                                FPS rogue-lite nerveux développé en solo sous Unreal Engine 4. Survie en arène par vagues d'ennemis cybernétiques avec arsenal dynamique et gestion des munitions.
+                                FPS rogue-lite nerveux développé en solo sous Unreal Engine 4. Survie en arène par
+                                vagues d'ennemis cybernétiques avec arsenal dynamique et gestion des munitions.
                             </p>
                             <div class="project-tags">
                                 <span class="badge badge-secondary">Unreal Engine 4</span>
@@ -300,7 +362,8 @@
                             </div>
                             <div class="project-footer">
                                 <span class="badge badge-cyan">Fin d'étude</span>
-                                <button class="btn btn-primary open-modal-btn" data-modal="modal-cyber-strike" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Voir la fiche complète →</button>
+                                <button class="btn btn-primary open-modal-btn btn-sm"
+                                    data-modal="modal-cyber-strike">Voir la fiche complète →</button>
                             </div>
                         </div>
                     </article>
@@ -309,12 +372,14 @@
                     <article class="project-card" data-category="unreal">
                         <div class="project-media">
                             <span class="badge project-badge-top">Projet Équipe (5)</span>
-                            <img src="Images/hungry_cat_bg.png" alt="Hungry Cat Aventure Narratif" loading="lazy" class="clickable-image">
+                            <img src="Images/hungry_cat_bg.png" alt="Hungry Cat Aventure Narratif" loading="lazy"
+                                class="clickable-image">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Hungry Cat</h3>
                             <p class="project-desc">
-                                Jeu d'aventure narratif atmosphérique sous Unreal Engine 4. Programmation du tutoriel, IA avancée du pêcheur, level design et intégration sonore.
+                                Jeu d'aventure narratif atmosphérique sous Unreal Engine 4. Programmation du tutoriel,
+                                IA avancée du pêcheur, level design et intégration sonore.
                             </p>
                             <div class="project-tags">
                                 <span class="badge badge-secondary">Unreal Engine 4</span>
@@ -324,7 +389,8 @@
                             </div>
                             <div class="project-footer">
                                 <span class="badge badge-cyan">3ème Année</span>
-                                <button class="btn btn-primary open-modal-btn" data-modal="modal-hungry-cat" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Voir la fiche complète →</button>
+                                <button class="btn btn-primary open-modal-btn btn-sm" data-modal="modal-hungry-cat">Voir
+                                    la fiche complète →</button>
                             </div>
                         </div>
                     </article>
@@ -333,12 +399,14 @@
                     <article class="project-card" data-category="unity">
                         <div class="project-media">
                             <span class="badge project-badge-top">Multijoueur</span>
-                            <img src="Images/air_race_main.png" alt="Air Race Jeu de Course Multijoueur Unity" loading="lazy" class="clickable-image">
+                            <img src="Images/air_race_main.png" alt="Air Race Jeu de Course Multijoueur Unity"
+                                loading="lazy" class="clickable-image">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Air Race</h3>
                             <p class="project-desc">
-                                Jeu de course 3D multijoueur sur PC développé en 4 mois sous Unity 3D par 4 Game Designers & Programmeurs sans graphistes 3D. Physique arcade et gestion de checkpoints.
+                                Jeu de course 3D multijoueur sur PC développé en 4 mois sous Unity 3D par 4 Game
+                                Designers & Programmeurs sans graphistes 3D. Physique arcade et gestion de checkpoints.
                             </p>
                             <div class="project-tags">
                                 <span class="badge badge-secondary">Unity 3D</span>
@@ -348,7 +416,8 @@
                             </div>
                             <div class="project-footer">
                                 <span class="badge badge-cyan">2ème Année</span>
-                                <button class="btn btn-primary open-modal-btn" data-modal="modal-air-race" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Voir la fiche complète →</button>
+                                <button class="btn btn-primary open-modal-btn btn-sm" data-modal="modal-air-race">Voir
+                                    la fiche complète →</button>
                             </div>
                         </div>
                     </article>
@@ -357,12 +426,14 @@
                     <article class="project-card" data-category="unity mobile">
                         <div class="project-media">
                             <span class="badge project-badge-top">Stage Pro</span>
-                            <img src="Images/seven_fallen_cards.jpg" alt="Seven Fallen Mobile App Unity TCG" loading="lazy" class="clickable-image">
+                            <img src="Images/seven_fallen_thumb.png" alt="Seven Fallen Mobile App Unity TCG"
+                                loading="lazy" class="clickable-image">
                         </div>
                         <div class="project-content">
                             <h3 class="project-title">Seven Fallen</h3>
                             <p class="project-desc">
-                                Application mobile officielle pour le jeu de cartes Seven Fallen. Module d'apprentissage interactif pour nouveaux joueurs sur Android et iOS en C#.
+                                Application mobile officielle pour le jeu de cartes Seven Fallen. Module d'apprentissage
+                                interactif pour nouveaux joueurs sur Android et iOS en C#.
                             </p>
                             <div class="project-tags">
                                 <span class="badge badge-secondary">Unity Mobile</span>
@@ -372,7 +443,8 @@
                             </div>
                             <div class="project-footer">
                                 <span class="badge badge-cyan">Professionnel</span>
-                                <button class="btn btn-primary open-modal-btn" data-modal="modal-seven-fallen" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Voir la fiche complète →</button>
+                                <button class="btn btn-primary open-modal-btn btn-sm"
+                                    data-modal="modal-seven-fallen">Voir la fiche complète →</button>
                             </div>
                         </div>
                     </article>
@@ -384,8 +456,9 @@
         <section id="github">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">Dépôts & Code Source GitHub</h2>
-                    <p class="section-subtitle">Exploration de mes architectures logicielles, algorithmes et projets publics</p>
+                    <h2 class="section-title" id="title-github">Dépôts & Code Source GitHub</h2>
+                    <p class="section-subtitle" id="subtitle-github">Exploration de mes architectures logicielles, algorithmes et projets
+                        publics</p>
                     <div class="github-sync-indicator" id="github-sync-indicator">
                         <span class="github-live-dot"></span>
                         <span id="github-sync-text">Synchronisation automatique GitHub</span>
@@ -398,13 +471,20 @@
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
                                     JavaSpring
                                 </h3>
                                 <span class="badge badge-cyan">Spring Boot 3</span>
                             </div>
                             <p>
-                                Architecture microservices Java 21 & Spring Boot 3 (API Square Games) : Inversion de Contrôle (IoC), plugins modulaires (TicTacToe, ConnectFour), persistance multi-sources DAO (Mémoire, JDBC, JPA/Hibernate), communication inter-services via <code>RestClient</code>, sécurité Stateless (Spring Security 6, JWT, RBAC) et SPA frontend.
+                                Architecture microservices Java 21 & Spring Boot 3 (API Square Games) : Inversion de
+                                Contrôle (IoC), plugins modulaires (TicTacToe, ConnectFour), persistance multi-sources
+                                DAO (Mémoire, JDBC, JPA/Hibernate), communication inter-services via
+                                <code>RestClient</code>, sécurité Stateless (Spring Security 6, JWT, RBAC) et SPA
+                                frontend.
                             </p>
                         </div>
                         <div class="github-card-footer">
@@ -412,7 +492,8 @@
                                 <span class="github-tech-dot"></span>
                                 <span>Java 21 / Spring Boot 3 / Microservices</span>
                             </div>
-                            <a href="https://github.com/BSourichanh/JavaSpring" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                            <a href="https://github.com/BSourichanh/JavaSpring" target="_blank"
+                                rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
 
@@ -421,21 +502,28 @@
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
                                     JavaSpringApiUsers
                                 </h3>
                                 <span class="badge badge-pink">Spring Security</span>
                             </div>
                             <p>
-                                Microservice autonome d'authentification et de gestion des identités : Spring Boot 3.3.4, Spring Security 6, JJWT, Spring Data JPA et base de données H2 in-memory. Hachage sécurisé BCrypt, validation de claims de jetons et contrôle d'accès basé sur les rôles (RBAC).
+                                Microservice autonome d'authentification et de gestion des identités : Spring Boot
+                                3.3.4, Spring Security 6, JJWT, Spring Data JPA et base de données H2 in-memory. Hachage
+                                sécurisé BCrypt, validation de claims de jetons et contrôle d'accès basé sur les rôles
+                                (RBAC).
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
-                                <span class="github-tech-dot" style="background: var(--neon-pink);"></span>
+                                <span class="github-tech-dot tech-pink"></span>
                                 <span>Security 6 / JJWT / JPA / H2</span>
                             </div>
-                            <a href="https://github.com/BSourichanh/JavaSpringApiUsers" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                            <a href="https://github.com/BSourichanh/JavaSpringApiUsers" target="_blank"
+                                rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
 
@@ -444,21 +532,27 @@
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
                                     Spicetify_visualizer
                                 </h3>
                                 <span class="badge badge-cyan">TypeScript</span>
                             </div>
                             <p>
-                                Suite de visualisation audio-réactive pour Spotify via Spicetify : Rendu 60–144 FPS Zero-Allocation, moteur DSP stéréo temps réel, pipeline modulaire Canvas 2D ultra-optimisé et synchronisation dynamique des couleurs avec les pochettes d'albums.
+                                Suite de visualisation audio-réactive pour Spotify via Spicetify : Rendu 60–144 FPS
+                                Zero-Allocation, moteur DSP stéréo temps réel, pipeline modulaire Canvas 2D
+                                ultra-optimisé et synchronisation dynamique des couleurs avec les pochettes d'albums.
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
-                                <span class="github-tech-dot"></span>
+                                <span class="github-tech-dot tech-cyan"></span>
                                 <span>TypeScript / Canvas 2D / DSP Stéréo</span>
                             </div>
-                            <a href="https://github.com/BSourichanh/Spicetify_visualizer" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                            <a href="https://github.com/BSourichanh/Spicetify_visualizer" target="_blank"
+                                rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
 
@@ -467,21 +561,27 @@
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
                                     Hyprland_Aurora
                                 </h3>
                                 <span class="badge badge-violet">Linux / Wayland</span>
                             </div>
                             <p>
-                                Configuration complète et design system pour Hyprland sous Linux / Wayland (Thème Aurora) : effet glassmorphism, bordures néon GPU en dégradé continu 360°, automatisation de scripts Python & Bash, Waybar et gestionnaire Pipewire.
+                                Configuration complète et design system pour Hyprland sous Linux / Wayland (Thème
+                                Aurora) : effet glassmorphism, bordures néon GPU en dégradé continu 360°, automatisation
+                                de scripts Python & Bash, Waybar et gestionnaire Pipewire.
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
-                                <span class="github-tech-dot" style="background: var(--neon-violet);"></span>
+                                <span class="github-tech-dot tech-violet"></span>
                                 <span>Hyprland / Python / Bash / Wayland</span>
                             </div>
-                            <a href="https://github.com/BSourichanh/Hyprland_Aurora" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                            <a href="https://github.com/BSourichanh/Hyprland_Aurora" target="_blank"
+                                rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
 
@@ -490,21 +590,27 @@
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
                                     POO_JAVA
                                 </h3>
                                 <span class="badge badge-cyan">Java 21</span>
                             </div>
                             <p>
-                                Jeu de plateau textuel Donjons & Dragons jouable à 1 ou 2 joueurs dans la console (TUI / ANSI). Architecture orientée objet respectant strictement les principes SOLID et Design Patterns (Factory, State, Strategy).
+                                Jeu de plateau textuel Donjons & Dragons jouable à 1 ou 2 joueurs dans la console (TUI /
+                                ANSI). Architecture orientée objet respectant strictement les principes SOLID et Design
+                                Patterns (Factory, State, Strategy).
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
-                                <span class="github-tech-dot"></span>
+                                <span class="github-tech-dot tech-cyan"></span>
                                 <span>Java 21 / POO / SOLID / Patterns</span>
                             </div>
-                            <a href="https://github.com/BSourichanh/POO_JAVA" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                            <a href="https://github.com/BSourichanh/POO_JAVA" target="_blank" rel="noopener noreferrer"
+                                class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
 
@@ -513,28 +619,38 @@
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
-                                    <svg class="github-icon-svg" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    <svg class="github-icon-svg" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                    </svg>
                                     BDD_SQL
                                 </h3>
                                 <span class="badge badge-violet">Data / SQL & NoSQL</span>
                             </div>
                             <p>
-                                Conception, modélisation MCD/MLD et requêtage avancé de bases de données relationnelles SQL (PostgreSQL, MySQL) et NoSQL (MongoDB, Redis). Procédures stockées, triggers, indexation et conteneurisation Docker.
+                                Conception, modélisation MCD/MLD et requêtage avancé de bases de données relationnelles
+                                SQL (PostgreSQL, MySQL) et NoSQL (MongoDB, Redis). Procédures stockées, triggers,
+                                indexation et conteneurisation Docker.
                             </p>
                         </div>
                         <div class="github-card-footer">
                             <div class="github-tech">
-                                <span class="github-tech-dot" style="background: var(--neon-violet);"></span>
+                                <span class="github-tech-dot tech-violet"></span>
                                 <span>SQL / PostgreSQL / MongoDB / Docker</span>
                             </div>
-                            <a href="https://github.com/BSourichanh/BDD_SQL" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
+                            <a href="https://github.com/BSourichanh/BDD_SQL" target="_blank" rel="noopener noreferrer"
+                                class="github-link-btn">Code source ↗</a>
                         </div>
                     </article>
                 </div>
 
-                <div class="text-center" style="margin-top: 3.25rem;">
-                    <a href="https://github.com/BSourichanh?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
-                        <svg class="github-icon-svg" viewBox="0 0 24 24" style="width: 18px; height: 18px; margin-right: 0.5rem; vertical-align: text-bottom;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <div class="text-center mt-lg">
+                    <a href="https://github.com/BSourichanh?tab=repositories" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-outline btn-md">
+                        <svg class="github-icon-svg github-btn-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
                         Explorer tous mes dépôts sur GitHub (@BSourichanh) ↗
                     </a>
                 </div>
@@ -545,8 +661,8 @@
         <section id="loisirs">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">Loisirs & Passions</h2>
-                    <p class="section-subtitle">Ce qui m'inspire et m'anime au quotidien en dehors du code</p>
+                    <h2 class="section-title" id="title-loisirs">Loisirs & Passions</h2>
+                    <p class="section-subtitle" id="subtitle-loisirs">Ce qui m'inspire et m'anime au quotidien en dehors du code</p>
                 </div>
 
                 <div class="hobbies-grid">
@@ -554,7 +670,8 @@
                         <div class="hobby-icon">🎮</div>
                         <h3>Jeux Vidéo & Game Design</h3>
                         <p>
-                            Passionné par l'analyse des mécaniques de gameplay, les jeux indépendants inventifs, les RPG, les FPS compétitifs et l'évolution historique des jeux vidéo.
+                            Passionné par l'analyse des mécaniques de gameplay, les jeux indépendants inventifs, les
+                            RPG, les FPS compétitifs et l'évolution historique des jeux vidéo.
                         </p>
                     </div>
 
@@ -562,7 +679,8 @@
                         <div class="hobby-icon">🚀</div>
                         <h3>High-Tech & Spatial</h3>
                         <p>
-                            Veille technologique active sur l'exploration spatiale, l'intelligence artificielle, le rendu graphique temps réel et le hardware informatique.
+                            Veille technologique active sur l'exploration spatiale, l'intelligence artificielle, le
+                            rendu graphique temps réel et le hardware informatique.
                         </p>
                     </div>
 
@@ -570,7 +688,8 @@
                         <div class="hobby-icon">🛡️</div>
                         <h3>Cybersécurité & Finance</h3>
                         <p>
-                            Intérêt poussé pour les architectures réseaux sécurisées, la protection des données, les technologies financières et la cryptographie.
+                            Intérêt poussé pour les architectures réseaux sécurisées, la protection des données, les
+                            technologies financières et la cryptographie.
                         </p>
                     </div>
 
@@ -578,7 +697,8 @@
                         <div class="hobby-icon">🍳</div>
                         <h3>Cuisine & Créativité</h3>
                         <p>
-                            Expérimentation culinaire, précision dans les recettes et esprit créatif appliqué aux arts du quotidien.
+                            Expérimentation culinaire, précision dans les recettes et esprit créatif appliqué aux arts
+                            du quotidien.
                         </p>
                     </div>
                 </div>
@@ -589,35 +709,42 @@
         <section id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">Contactez-Moi</h2>
-                    <p class="section-subtitle">Une opportunité d'alternance, un projet ou une question ? Écrivez-moi directement</p>
+                    <h2 class="section-title" id="title-contact">Contactez-Moi</h2>
+                    <p class="section-subtitle" id="subtitle-contact">Une opportunité d'alternance, un projet ou une question ? Écrivez-moi
+                        directement</p>
                 </div>
 
                 <div class="contact-layout">
                     <!-- Formulaire de contact Cyberpunk -->
                     <div class="contact-card-box">
-                        <form class="contact-form" action="mailto:bernard.sourichanh@gmail.com" method="POST" enctype="text/plain">
+                        <form class="contact-form" action="mailto:bernard.sourichanh@gmail.com" method="POST"
+                            enctype="text/plain">
                             <div class="form-group">
                                 <label for="nom">Nom & Prénom</label>
-                                <input type="text" id="nom" name="nom" class="form-control" placeholder="ex: Jean Dupont" required>
+                                <input type="text" id="nom" name="nom" class="form-control"
+                                    placeholder="ex: Jean Dupont" autocomplete="name" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Adresse Email</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="ex: jean.dupont@email.com" required>
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="ex: jean.dupont@email.com" autocomplete="email" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="sujet">Sujet</label>
-                                <input type="text" id="sujet" name="sujet" class="form-control" placeholder="ex: Opportunité d'alternance / Développeur Full-Stack / Game Dev">
+                                <input type="text" id="sujet" name="sujet" class="form-control"
+                                    placeholder="ex: Opportunité d'alternance / Développeur Full-Stack / Game Dev"
+                                    autocomplete="off">
                             </div>
 
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" class="form-control" placeholder="Écrivez votre message ici..." required></textarea>
+                                <textarea id="message" name="message" class="form-control" rows="5"
+                                    placeholder="Écrivez votre message ici..." required></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Transmettre le message</button>
+                            <button type="submit" class="btn btn-primary btn-block">Transmettre le message</button>
                         </form>
                     </div>
 
@@ -625,19 +752,20 @@
                     <div class="contact-info-list">
                         <div class="contact-info-item">
                             <div class="contact-icon-wrapper">
-                                <img src="Images/env.png" alt="Email Icon" class="contact-icon-img">
+                                <img src="Images/env.png" alt="Icône Email" class="contact-icon-img">
                             </div>
                             <div class="contact-details">
                                 <h4>Email Direct</h4>
                                 <a href="mailto:bernard.sourichanh@gmail.com">bernard.sourichanh@gmail.com</a>
                                 <br>
-                                <a href="mailto:bernard.sourichanh@le-campus-numerique.fr" style="font-size: 0.82rem; color: var(--text-muted);">bernard.sourichanh@le-campus-numerique.fr</a>
+                                <a href="mailto:bernard.sourichanh@le-campus-numerique.fr"
+                                    class="contact-sub-email">bernard.sourichanh@le-campus-numerique.fr</a>
                             </div>
                         </div>
 
                         <div class="contact-info-item">
                             <div class="contact-icon-wrapper">
-                                <img src="Images/phone.png" alt="Phone Icon" class="contact-icon-img">
+                                <img src="Images/phone.png" alt="Icône Téléphone" class="contact-icon-img">
                             </div>
                             <div class="contact-details">
                                 <h4>Téléphone</h4>
@@ -657,11 +785,15 @@
 
                         <div class="contact-info-item">
                             <div class="contact-icon-wrapper">
-                                <svg style="width: 26px; height: 26px; fill: currentColor;" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <svg class="contact-social-svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                </svg>
                             </div>
                             <div class="contact-details">
                                 <h4>GitHub</h4>
-                                <a href="https://github.com/BSourichanh" target="_blank" rel="noopener noreferrer">github.com/BSourichanh ↗</a>
+                                <a href="https://github.com/BSourichanh" target="_blank"
+                                    rel="noopener noreferrer">github.com/BSourichanh ↗</a>
                             </div>
                         </div>
 
@@ -671,7 +803,8 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Disponibilité</h4>
-                                <p>En recherche active d'une <strong>alternance</strong> (Full-Stack / IA / Game Dev)</p>
+                                <p>En recherche active d'une <strong>alternance</strong> (Full-Stack / IA / Game Dev)
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -681,184 +814,233 @@
     </main>
 
     <!-- Modales de détails des projets (Inline One-Page avec Données & Galeries Wix Complètes) -->
-    
+
     <!-- Modale 1: Cyber Strike -->
-    <div id="modal-cyber-strike" class="project-modal">
+    <div id="modal-cyber-strike" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modal-cyber-strike-title">
         <div class="project-modal-content">
-            <button class="project-modal-close" aria-label="Fermer la fenêtre">&times;</button>
+            <button class="project-modal-close" aria-label="Fermer la boîte de dialogue">&times;</button>
             <span class="project-breadcrumb">[PROJET SOLO] // CYBER STRIKE</span>
-            <h2>Cyber Strike</h2>
-            <div class="project-tags" style="margin-bottom: 1.5rem;">
+            <h2 id="modal-cyber-strike-title">Cyber Strike</h2>
+            <div class="project-tags mb-md">
                 <span class="badge badge-cyan">Unreal Engine 4</span>
                 <span class="badge badge-secondary">FPS / Rogue-lite</span>
                 <span class="badge badge-secondary">Projet de fin d'études solo</span>
                 <span class="badge badge-secondary">PC</span>
             </div>
-            <img src="Images/cyber_strike_mockup.png" alt="Cyber Strike Mockup" style="width: 100%; max-height: 420px; object-fit: cover; clip-path: var(--clip-corner-md); margin-bottom: 2rem;" class="clickable-image">
-            
+            <img src="Images/cyber_strike_mockup.png" alt="Cyber Strike Mockup" class="modal-cover-img clickable-image">
+
             <h3>📋 Contexte & Pitch du Projet</h3>
             <p>
-                <strong>Cyber Strike</strong> est un FPS Rogue-lite nerveux développé en <strong>solo</strong> comme projet de fin d'études à la Human Academy sous <strong>Unreal Engine 4</strong>. Plongé dans une arène cybernétique hostile, le joueur doit repousser des vagues successives d'ennemis robotiques en gérant son arsenal dynamique et ses munitions.
+                <strong>Cyber Strike</strong> est un FPS Rogue-lite nerveux développé en <strong>solo</strong> comme
+                projet de fin d'études à la Human Academy sous <strong>Unreal Engine 4</strong>. Plongé dans une arène
+                cybernétique hostile, le joueur doit repousser des vagues successives d'ennemis robotiques en gérant son
+                arsenal dynamique et ses munitions.
             </p>
-            
+
             <h3>🛠️ Tâches & Réalisations Techniques</h3>
-            <ul class="skill-list" style="margin-bottom: 2rem;">
-                <li class="skill-list-item"><strong>Programmation de l'arsenal de tir :</strong> Mécaniques de tirs, recul des armes, temps de rechargement et dispersion balistique (Fusil d'assaut, Fusil à pompe, Pistolet).</li>
-                <li class="skill-list-item"><strong>Intelligence Artificielle ennemie :</strong> Arbre de comportements (Behavior Trees), détection du joueur par champ de vision, navigation dynamique NavMesh et tirs prédictifs.</li>
-                <li class="skill-list-item"><strong>Système de vagues & difficulté :</strong> Algorithme de spawn procédural d'ennemis avec courbe de difficulté croissante par manche.</li>
-                <li class="skill-list-item"><strong>Rendu & Immersion :</strong> Intégration d'effets visuels néon et particules sous Unreal Engine, feedbacks sonores immersifs et HUD interactif.</li>
+            <ul class="skill-list mb-lg">
+                <li class="skill-list-item"><strong>Programmation de l'arsenal de tir :</strong> Mécaniques de tirs,
+                    recul des armes, temps de rechargement et dispersion balistique (Fusil d'assaut, Fusil à pompe,
+                    Pistolet).</li>
+                <li class="skill-list-item"><strong>Intelligence Artificielle ennemie :</strong> Arbre de comportements
+                    (Behavior Trees), détection du joueur par champ de vision, navigation dynamique NavMesh et tirs
+                    prédictifs.</li>
+                <li class="skill-list-item"><strong>Système de vagues & difficulté :</strong> Algorithme de spawn
+                    procédural d'ennemis avec courbe de difficulté croissante par manche.</li>
+                <li class="skill-list-item"><strong>Rendu & Immersion :</strong> Intégration d'effets visuels néon et
+                    particules sous Unreal Engine, feedbacks sonores immersifs et HUD interactif.</li>
             </ul>
 
             <h3>🖼️ Galerie de captures d'écran (Wix)</h3>
-            <div class="hobbies-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/cyber_strike_prez.png" alt="Cyber Strike Gameplay Prez" style="width: 100%; height: 180px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Gameplay, Réticule & Interface In-Game</p>
+            <div class="modal-gallery-grid">
+                <div class="modal-gallery-card">
+                    <img src="Images/cyber_strike_prez.png" alt="Cyber Strike Gameplay Prez"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Gameplay, Réticule & Interface In-Game</p>
                 </div>
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/cyber_strike_cover.png" alt="Cyber Strike Cover Arène" style="width: 100%; height: 180px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Arène Cybernétique & Ambiance Néon</p>
+                <div class="modal-gallery-card">
+                    <img src="Images/cyber_strike_cover.png" alt="Cyber Strike Cover Arène"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Arène Cybernétique & Ambiance Néon</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modale 2: Hungry Cat -->
-    <div id="modal-hungry-cat" class="project-modal">
+    <div id="modal-hungry-cat" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modal-hungry-cat-title">
         <div class="project-modal-content">
-            <button class="project-modal-close" aria-label="Fermer la fenêtre">&times;</button>
+            <button class="project-modal-close" aria-label="Fermer la boîte de dialogue">&times;</button>
             <span class="project-breadcrumb">[PROJET ÉQUIPE] // HUNGRY CAT</span>
-            <h2>Hungry Cat</h2>
-            <div class="project-tags" style="margin-bottom: 1.5rem;">
+            <h2 id="modal-hungry-cat-title">Hungry Cat</h2>
+            <div class="project-tags mb-md">
                 <span class="badge badge-cyan">Unreal Engine 4</span>
                 <span class="badge badge-secondary">Aventure - Narratif</span>
                 <span class="badge badge-secondary">Projet de 3ème année</span>
                 <span class="badge badge-secondary">Durée : 4 mois</span>
                 <span class="badge badge-secondary">PC</span>
             </div>
-            <img src="Images/hungry_cat_logo.png" alt="Hungry Cat Logo & Hero" style="width: 100%; max-height: 420px; object-fit: cover; clip-path: var(--clip-corner-md); margin-bottom: 2rem;" class="clickable-image">
-            
+            <img src="Images/hungry_cat_logo.png" alt="Hungry Cat Logo & Hero" class="modal-cover-img clickable-image">
+
             <h3>📋 Contexte, Durée & Équipe</h3>
             <p>
-                <strong>Hungry Cat</strong> est un jeu d'aventure narratif atmosphérique développé sur une durée de <strong>4 mois</strong> sous <strong>Unreal Engine 4</strong> pour PC. Le joueur y incarne un chat agile explorant un village côtier plein de secrets à la recherche de poissons.
+                <strong>Hungry Cat</strong> est un jeu d'aventure narratif atmosphérique développé sur une durée de
+                <strong>4 mois</strong> sous <strong>Unreal Engine 4</strong> pour PC. Le joueur y incarne un chat agile
+                explorant un village côtier plein de secrets à la recherche de poissons.
             </p>
-            <p style="margin-bottom: 1.5rem;">
-                👥 <strong>Membres de l'équipe (5 personnes) :</strong> Léa Frayssinhes, Florian Gras, Julien Maindron, François Sourichanh, Bernard Sourichanh.
+            <p class="mb-md">
+                👥 <strong>Membres de l'équipe (5 personnes) :</strong> Léa Frayssinhes, Florian Gras, Julien Maindron,
+                François Sourichanh, Bernard Sourichanh.
             </p>
-            
+
             <h3>🛠️ Ce que j'ai fait sur le projet (Rôle de Bernard Sourichanh)</h3>
-            <ul class="skill-list" style="margin-bottom: 2rem;">
-                <li class="skill-list-item"><strong>Programmation du tutoriel :</strong> Conception et implémentation du tutoriel d'apprentissage interactif pour guider le joueur dans les contrôles du chat.</li>
-                <li class="skill-list-item"><strong>Programmation de l'IA du pêcheur :</strong> Création de l'Intelligence Artificielle ennemie sous UE4 (cônes de vision, zones de patrouille, détection du chat, états de vigilance et alertes).</li>
-                <li class="skill-list-item"><strong>Game Design & Level Design :</strong> Conception des énigmes environnementales et modélisation/blockout des zones du tutoriel et des rives du lac.</li>
-                <li class="skill-list-item"><strong>Intégration VFX / SFX :</strong> Implémentation des effets visuels (eau, poussières) et mixage audio complet (bruitages de pas, miaulements, ambiance côtière).</li>
+            <ul class="skill-list mb-lg">
+                <li class="skill-list-item"><strong>Programmation du tutoriel :</strong> Conception et implémentation du
+                    tutoriel d'apprentissage interactif pour guider le joueur dans les contrôles du chat.</li>
+                <li class="skill-list-item"><strong>Programmation de l'IA du pêcheur :</strong> Création de
+                    l'Intelligence Artificielle ennemie sous UE4 (cônes de vision, zones de patrouille, détection du
+                    chat, états de vigilance et alertes).</li>
+                <li class="skill-list-item"><strong>Game Design & Level Design :</strong> Conception des énigmes
+                    environnementales et modélisation/blockout des zones du tutoriel et des rives du lac.</li>
+                <li class="skill-list-item"><strong>Intégration VFX / SFX :</strong> Implémentation des effets visuels
+                    (eau, poussières) et mixage audio complet (bruitages de pas, miaulements, ambiance côtière).</li>
             </ul>
 
             <h3>🖼️ Galerie Complète des Captures In-Game (Wix)</h3>
-            <div class="hobbies-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/hungry_cat_hgc2.png" alt="Hungry Cat HGC2 Village" style="width: 100%; height: 160px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Village Côtier & Exploration</p>
+            <div class="modal-gallery-grid">
+                <div class="modal-gallery-card">
+                    <img src="Images/hungry_cat_hgc2.png" alt="Hungry Cat HGC2 Village"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Village Côtier & Exploration</p>
                 </div>
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/hungry_cat_hgc5.png" alt="Hungry Cat HGC5 Chat et Pêcheur" style="width: 100%; height: 160px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Infiltration : Chat vs IA Pêcheur</p>
+                <div class="modal-gallery-card">
+                    <img src="Images/hungry_cat_hgc5.png" alt="Hungry Cat HGC5 Chat et Pêcheur"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Infiltration : Chat vs IA Pêcheur</p>
                 </div>
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/hungry_cat_hgc7.png" alt="Hungry Cat HGC7 Bord de Mer" style="width: 100%; height: 160px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Bord de Mer & Pontons du Lac</p>
+                <div class="modal-gallery-card">
+                    <img src="Images/hungry_cat_hgc7.png" alt="Hungry Cat HGC7 Bord de Mer"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Bord de Mer & Pontons du Lac</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modale 3: Air Race -->
-    <div id="modal-air-race" class="project-modal">
+    <div id="modal-air-race" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modal-air-race-title">
         <div class="project-modal-content">
-            <button class="project-modal-close" aria-label="Fermer la fenêtre">&times;</button>
+            <button class="project-modal-close" aria-label="Fermer la boîte de dialogue">&times;</button>
             <span class="project-breadcrumb">[PROJET ÉQUIPE] // AIR RACE</span>
-            <h2>Air Race</h2>
-            <div class="project-tags" style="margin-bottom: 1.5rem;">
+            <h2 id="modal-air-race-title">Air Race</h2>
+            <div class="project-tags mb-md">
                 <span class="badge badge-cyan">Unity 3D</span>
                 <span class="badge badge-secondary">Jeu de Course 3D - Multijoueur</span>
                 <span class="badge badge-secondary">Projet de 2ème année</span>
                 <span class="badge badge-secondary">Durée : 4 mois</span>
                 <span class="badge badge-secondary">PC</span>
             </div>
-            <img src="Images/air_race_main.png" alt="Air Race Main Artwork" style="width: 100%; max-height: 420px; object-fit: cover; clip-path: var(--clip-corner-md); margin-bottom: 2rem;" class="clickable-image">
-            
+            <img src="Images/air_race_main.png" alt="Air Race Main Artwork" class="modal-cover-img clickable-image">
+
             <h3>📋 Contexte, Contraintes & Équipe</h3>
             <p>
-                <strong>Air Race</strong> est un jeu de course 3D multijoueur futuriste développé sur PC sous <strong>Unity 3D</strong> en <strong>4 mois</strong>.
+                <strong>Air Race</strong> est un jeu de course 3D multijoueur futuriste développé sur PC sous
+                <strong>Unity 3D</strong> en <strong>4 mois</strong>.
             </p>
             <p>
-                ⚠️ <strong>Contraintes techniques majeures :</strong> Réaliser un jeu 3D complet en 4 mois au sein d'une petite équipe et <strong>sans graphistes 3D</strong>. L'équipe était composée exclusivement de 4 Game Designers / Programmeurs.
+                ⚠️ <strong>Contraintes techniques majeures :</strong> Réaliser un jeu 3D complet en 4 mois au sein d'une
+                petite équipe et <strong>sans graphistes 3D</strong>. L'équipe était composée exclusivement de 4 Game
+                Designers / Programmeurs.
             </p>
-            <p style="margin-bottom: 1.5rem;">
-                👥 <strong>Membres de l'équipe (4 personnes) :</strong> Léa Frayssinhes, Clément Lavievic, Diwan Chouc, Bernard Sourichanh.
+            <p class="mb-md">
+                👥 <strong>Membres de l'équipe (4 personnes) :</strong> Léa Frayssinhes, Clément Lavievic, Diwan Chouc,
+                Bernard Sourichanh.
             </p>
-            
+
             <h3>🛠️ Ce que j'ai fait sur le projet (Rôle de Bernard Sourichanh)</h3>
-            <ul class="skill-list" style="margin-bottom: 2rem;">
-                <li class="skill-list-item"><strong>Programmation Gameplay en C# :</strong> Contrôleur physique des vaisseaux aériens (accélération, inclinaisons dynamiques, freinage d'urgence, système de boosts et sensation de vitesse).</li>
-                <li class="skill-list-item"><strong>Programmation Réseau Multijoueur :</strong> Architecture client-serveur pour la synchronisation en temps réel de la position des vaisseaux et gestion des collisions réseau.</li>
-                <li class="skill-list-item"><strong>Game Design & Système de Course :</strong> Détection automatique des checkpoints, calcul des tours, gestion du classement en temps réel et chronométrage précis.</li>
-                <li class="skill-list-item"><strong>Level Design modulaire :</strong> Création et assemblage des pistes aériennes avec obstacles et boucles acrobatiques.</li>
+            <ul class="skill-list mb-lg">
+                <li class="skill-list-item"><strong>Programmation Gameplay en C# :</strong> Contrôleur physique des
+                    vaisseaux aériens (accélération, inclinaisons dynamiques, freinage d'urgence, système de boosts et
+                    sensation de vitesse).</li>
+                <li class="skill-list-item"><strong>Programmation Réseau Multijoueur :</strong> Architecture
+                    client-serveur pour la synchronisation en temps réel de la position des vaisseaux et gestion des
+                    collisions réseau.</li>
+                <li class="skill-list-item"><strong>Game Design & Système de Course :</strong> Détection automatique des
+                    checkpoints, calcul des tours, gestion du classement en temps réel et chronométrage précis.</li>
+                <li class="skill-list-item"><strong>Level Design modulaire :</strong> Création et assemblage des pistes
+                    aériennes avec obstacles et boucles acrobatiques.</li>
             </ul>
 
             <h3>🖼️ Galerie de captures (Wix)</h3>
-            <div class="hobbies-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/air_race_main.png" alt="Air Race Artwork" style="width: 100%; height: 180px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Circuits 3D & Vaisseaux Futuristes</p>
+            <div class="modal-gallery-grid">
+                <div class="modal-gallery-card">
+                    <img src="Images/air_race_main.png" alt="Air Race Artwork"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Circuits 3D & Vaisseaux Futuristes</p>
                 </div>
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/air_race_thumb.png" alt="Air Race Gameplay Thumb" style="width: 100%; height: 180px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Gameplay Multijoueur & Checkpoints</p>
+                <div class="modal-gallery-card">
+                    <img src="Images/air_race_thumb.png" alt="Air Race Gameplay Thumb"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Gameplay Multijoueur & Checkpoints</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modale 4: Seven Fallen -->
-    <div id="modal-seven-fallen" class="project-modal">
+    <div id="modal-seven-fallen" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modal-seven-fallen-title">
         <div class="project-modal-content">
-            <button class="project-modal-close" aria-label="Fermer la fenêtre">&times;</button>
+            <button class="project-modal-close" aria-label="Fermer la boîte de dialogue">&times;</button>
             <span class="project-breadcrumb">[PROJET PRO / STAGE] // SEVEN FALLEN</span>
-            <h2>Seven Fallen</h2>
-            <div class="project-tags" style="margin-bottom: 1.5rem;">
+            <h2 id="modal-seven-fallen-title">Seven Fallen</h2>
+            <div class="project-tags mb-md">
                 <span class="badge badge-cyan">Unity Mobile</span>
                 <span class="badge badge-secondary">C# (.NET)</span>
                 <span class="badge badge-secondary">Stage de fin d'études (3 mois) & Entreprise</span>
                 <span class="badge badge-secondary">Android / iOS</span>
             </div>
-            <img src="Images/seven_fallen_cards.jpg" alt="Seven Fallen Cards Presentation" style="width: 100%; max-height: 420px; object-fit: cover; clip-path: var(--clip-corner-md); margin-bottom: 2rem;" class="clickable-image">
-            
+            <img src="Images/seven_fallen_cards.jpg" alt="Seven Fallen Cards Presentation"
+                class="modal-cover-img clickable-image">
+
             <h3>📋 Contexte & Objectif</h3>
             <p>
-                <strong>Seven Fallen</strong> est une application mobile officielle d'apprentissage et compagnon développée pour le jeu de cartes à collectionner physique <em>Seven Fallen</em>. Réalisée dans le cadre d'un stage de fin d'études de <strong>3 mois</strong> puis prolongée par une expérience de <strong>1 an</strong> en entreprise en tant que développeur d'applications mobiles.
+                <strong>Seven Fallen</strong> est une application mobile officielle d'apprentissage et compagnon
+                développée pour le jeu de cartes à collectionner physique <em>Seven Fallen</em>. Réalisée dans le cadre
+                d'un stage de fin d'études de <strong>3 mois</strong> puis prolongée par une expérience de <strong>1
+                    an</strong> en entreprise en tant que développeur d'applications mobiles.
             </p>
-            
+
             <h3>🛠️ Ce que j'ai fait sur le projet (Rôle : Co-développeur)</h3>
-            <ul class="skill-list" style="margin-bottom: 2rem;">
-                <li class="skill-list-item"><strong>Module d'apprentissage interactif :</strong> Développement complet des scénarios didactiques étape par étape pour enseigner les règles de duel aux nouveaux joueurs.</li>
-                <li class="skill-list-item"><strong>Développement Mobile C# :</strong> Programmation des mécaniques tactiles adaptatives pour smartphones et tablettes sous Android et iOS sous Unity.</li>
-                <li class="skill-list-item"><strong>Base de données des cartes :</strong> Intégration et structuration de la collection de cartes, statistiques, effets d'invocation et règles du jeu.</li>
+            <ul class="skill-list mb-lg">
+                <li class="skill-list-item"><strong>Module d'apprentissage interactif :</strong> Développement complet
+                    des scénarios didactiques étape par étape pour enseigner les règles de duel aux nouveaux joueurs.
+                </li>
+                <li class="skill-list-item"><strong>Développement Mobile C# :</strong> Programmation des mécaniques
+                    tactiles adaptatives pour smartphones et tablettes sous Android et iOS sous Unity.</li>
+                <li class="skill-list-item"><strong>Base de données des cartes :</strong> Intégration et structuration
+                    de la collection de cartes, statistiques, effets d'invocation et règles du jeu.</li>
             </ul>
 
             <h3>🖼️ Galerie de l'Application Mobile (Wix)</h3>
-            <div class="hobbies-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/seven_fallen_screen1.png" alt="Seven Fallen Screen 1" style="width: 100%; height: 160px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Interface de Duel Interactive</p>
+            <div class="modal-gallery-grid">
+                <div class="modal-gallery-card">
+                    <img src="Images/seven_fallen_screen1.png" alt="Seven Fallen Screen 1"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Interface de Duel Interactive</p>
                 </div>
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/seven_fallen_screen2.jpg" alt="Seven Fallen Screen 2" style="width: 100%; height: 160px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Tutoriel Guidé Étape par Étape</p>
+                <div class="modal-gallery-card">
+                    <img src="Images/seven_fallen_screen2.jpg" alt="Seven Fallen Screen 2"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Tutoriel Guidé Étape par Étape</p>
                 </div>
-                <div class="hobby-card" style="padding: 0.75rem;">
-                    <img src="Images/seven_fallen_screen3.jpg" alt="Seven Fallen Screen 3" style="width: 100%; height: 160px; object-fit: cover; clip-path: var(--clip-corner-sm);" class="clickable-image">
-                    <p style="font-size: 0.82rem; color: var(--text-pink-light); margin-top: 0.5rem; text-align: center;">Gestion du Deck & Cartes Joueur</p>
+                <div class="modal-gallery-card">
+                    <img src="Images/seven_fallen_screen3.jpg" alt="Seven Fallen Screen 3"
+                        class="modal-gallery-img clickable-image">
+                    <p class="modal-gallery-caption">Gestion du Deck & Cartes Joueur</p>
                 </div>
             </div>
         </div>
@@ -871,7 +1053,8 @@
                 <div class="footer-brand">
                     <h2>Bernard Sourichanh</h2>
                     <p>
-                        Concepteur & Développeur pratique IA / Game Programmer en recherche d'alternance. Conception de mécaniques de gameplay, d'architectures logicielles et d'applications modernes.
+                        Concepteur & Développeur pratique IA / Game Programmer en recherche d'alternance. Conception de
+                        mécaniques de gameplay, d'architectures logicielles et d'applications modernes.
                     </p>
                 </div>
 
@@ -891,8 +1074,10 @@
                 <div>
                     <h3 class="footer-nav-title">Réseaux & Téléchargements</h3>
                     <div class="footer-links">
-                        <a href="CV.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--text-pink); font-weight: 700;">📄 Télécharger mon CV (PDF) ↗</a>
-                        <a href="https://github.com/BSourichanh" target="_blank" rel="noopener noreferrer">GitHub (@BSourichanh) ↗</a>
+                        <a href="CV.pdf" target="_blank" rel="noopener noreferrer" class="footer-cv-link">📄 Télécharger
+                            mon CV (PDF) ↗</a>
+                        <a href="https://github.com/BSourichanh" target="_blank" rel="noopener noreferrer">GitHub
+                            (@BSourichanh) ↗</a>
                         <a href="mailto:bernard.sourichanh@gmail.com">Email (bernard.sourichanh@gmail.com) ↗</a>
                         <a href="tel:0652767215">Téléphone : 06 52 76 72 15 ↗</a>
                     </div>
@@ -901,11 +1086,12 @@
 
             <div class="footer-bottom">
                 <p>&copy; 2026 Bernard Sourichanh. Tous droits réservés.</p>
-                <p><a href="#hero" style="color: var(--text-pink);">↑ Retour en haut de page</a></p>
+                <p><a href="#hero" class="footer-back-top">↑ Retour en haut de page</a></p>
             </div>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
 </body>
+
 </html>
