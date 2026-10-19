@@ -909,6 +909,9 @@ header:hover {
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
     animation: neonBorderPulse 7.5s ease-in-out infinite alternate;
 }
 
@@ -936,6 +939,10 @@ header:hover {
     height: 3px;
     filter: brightness(1.5) drop-shadow(0 0 10px #ff2a85);
     box-shadow: 0 0 15px #ff2a85;
+}
+
+.github-card:hover .github-repo-title {
+    color: var(--text-pink);
 }
 
 .github-card-header {
@@ -994,23 +1001,6 @@ header:hover {
     border-radius: 50%;
     background: var(--neon-pink);
     box-shadow: 0 0 8px var(--neon-pink);
-}
-
-.github-link-btn {
-    font-size: 0.85rem;
-    font-family: var(--font-mono);
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
-}
-
-.github-link-btn:hover {
-    color: var(--text-pink);
-    text-shadow: 0 0 8px var(--text-pink);
 }
 
 .github-sync-indicator {

@@ -16,11 +16,10 @@ const PortfolioApp = (() => {
     const Config = {
         github: {
             username: 'BSourichanh',
-            cacheKey: 'bs_github_repos_v2',
-            cacheTimeKey: 'bs_github_repos_time_v2',
+            cacheKey: 'bs_github_repos_v4',
+            cacheTimeKey: 'bs_github_repos_time_v4',
             cacheTtlMs: 1000 * 60 * 60, // 1 hour
-            apiEndpoint: 'https://api.github.com/users/BSourichanh/repos?sort=updated&per_page=100',
-            maxDisplayRepos: 8
+            apiEndpoint: 'https://api.github.com/users/BSourichanh/repos?sort=updated&per_page=100'
         },
         languages: {
             'Java': { badge: 'badge-cyan', dot: 'var(--neon-cyan)', name: 'Java 21' },
@@ -33,7 +32,9 @@ const PortfolioApp = (() => {
             'HTML': { badge: 'badge-pink', dot: 'var(--neon-pink)', name: 'HTML5 / CSS3' },
             'Processing': { badge: 'badge-secondary', dot: 'var(--neon-yellow)', name: 'Processing' },
             'Hack': { badge: 'badge-violet', dot: 'var(--neon-violet)', name: 'SQL / BDD' },
-            'Shell': { badge: 'badge-violet', dot: 'var(--neon-violet)', name: 'Bash / Linux' }
+            'Shell': { badge: 'badge-violet', dot: 'var(--neon-violet)', name: 'Bash / Linux' },
+            'Vue': { badge: 'badge-cyan', dot: '#42b883', name: 'Vue.js 3' },
+            'PHP': { badge: 'badge-secondary', dot: '#777bb4', name: 'PHP' }
         },
         repoEnrichments: {
             'JavaSpring': {
@@ -99,6 +100,30 @@ const PortfolioApp = (() => {
                 badgeClass: 'badge-pink',
                 dotColor: 'var(--neon-pink)',
                 priority: 8
+            },
+            'JS_Vue': {
+                desc: "Application web monopage (SPA) conçue avec Vue.js 3 et Vite : catalogue cinématographique connecté à une API REST sécurisée (authentification JWT, pagination, recherche temps réel avec débouncing) et module météo en direct.",
+                tags: 'Vue.js 3 / Vite / Pinia / REST API',
+                badgeText: 'Vue.js 3',
+                badgeClass: 'badge-cyan',
+                dotColor: 'var(--neon-cyan)',
+                priority: 9
+            },
+            'Algo_Avance': {
+                desc: "Recueil d'algorithmes avancés, structures de données complexes et résolutions de problèmes d'optimisation et d'efficacité algorithmique.",
+                tags: 'Algorithmique / Structures de données',
+                badgeText: 'Algorithmique',
+                badgeClass: 'badge-violet',
+                dotColor: 'var(--neon-violet)',
+                priority: 10
+            },
+            'GIT': {
+                desc: "Guide pratique, workflows et conventions de versioning avec Git : gestion de branches, rebase interactif, hooks et automatisation.",
+                tags: 'Git / Versioning / CLI',
+                badgeText: 'Git / DevOps',
+                badgeClass: 'badge-secondary',
+                dotColor: '#94a3b8',
+                priority: 11
             }
         },
         icons: {
@@ -247,8 +272,7 @@ const PortfolioApp = (() => {
                 pulseSpeed: 0.035 + Math.random() * 0.035,
                 life: life,
                 maxLife: maxLife,
-                fadeAlpha: 0,
-                trail: []
+                fadeAlpha: 0
             };
         };
 
@@ -512,51 +536,28 @@ const PortfolioApp = (() => {
                 }
             }
 
-            // 4. Mesh Nodes & Connections (Aurora Borealis Theme ONLY)
-            // In Cyberpunk Mode (isHacked): NO nodes/balls/chips swarming or attracted to the cursor!
+            // 4. Floating Nodes / Spheres (Aurora Borealis Theme ONLY)
             if (!isHacked) {
-                const maxDist = 210;
-                const maxDistSq = maxDist * maxDist;
-                const mouseRange = 270;
-                const mouseRangeSq = mouseRange * mouseRange;
-
                 for (let i = 0; i < nodes.length; i++) {
                     const node = nodes[i];
-                    let isConnectedToMouse = false;
-                    let mouseDist = 9999;
 
-                    if (mouse.active) {
-                        const dx = mouse.x - node.x;
-                        const dy = mouse.y - node.y;
-                        const distSq = dx * dx + dy * dy;
-                        if (distSq < mouseRangeSq) {
-                            isConnectedToMouse = true;
-                            mouseDist = Math.sqrt(distSq);
-                        }
+                    const currentSpeed = Math.hypot(node.vx, node.vy);
+                    const speedBurnFactor = 1 + Math.max(0, (currentSpeed - 0.7) * 2.2);
+                    node.life += speedBurnFactor;
+
+                    const fadeInFrames = node.maxLife * 0.18;
+                    const fadeOutStart = node.maxLife * 0.78;
+
+                    if (node.life < fadeInFrames) {
+                        node.fadeAlpha = node.life / fadeInFrames;
+                    } else if (node.life > fadeOutStart) {
+                        node.fadeAlpha = Math.max(0, (node.maxLife - node.life) / (node.maxLife - fadeOutStart));
+                    } else {
+                        node.fadeAlpha = 1.0;
                     }
 
-                    if (isConnectedToMouse) {
-                        node.life = Math.min(node.life, node.maxLife * 0.45);
-                        node.fadeAlpha = Math.min(1.0, node.fadeAlpha + 0.08);
-                    } else {
-                        const currentSpeed = Math.hypot(node.vx, node.vy);
-                        const speedBurnFactor = 1 + Math.max(0, (currentSpeed - 0.7) * 2.2);
-                        node.life += speedBurnFactor;
-
-                        const fadeInFrames = node.maxLife * 0.18;
-                        const fadeOutStart = node.maxLife * 0.78;
-
-                        if (node.life < fadeInFrames) {
-                            node.fadeAlpha = node.life / fadeInFrames;
-                        } else if (node.life > fadeOutStart) {
-                            node.fadeAlpha = Math.max(0, (node.maxLife - node.life) / (node.maxLife - fadeOutStart));
-                        } else {
-                            node.fadeAlpha = 1.0;
-                        }
-
-                        if (node.life >= node.maxLife || node.fadeAlpha <= 0.001) {
-                            Object.assign(node, createNode(false));
-                        }
+                    if (node.life >= node.maxLife || node.fadeAlpha <= 0.001) {
+                        Object.assign(node, createNode(false));
                     }
 
                     node.x += node.vx;
@@ -573,28 +574,6 @@ const PortfolioApp = (() => {
                     const intensity = 0.5 + Math.sin(node.pulsePhase) * 0.5;
                     const currentRadius = node.baseSize * (0.8 + intensity * 0.55);
 
-                    node.trail.unshift({ x: node.x, y: node.y });
-                    if (node.trail.length > 12) node.trail.pop();
-
-                    if (isConnectedToMouse && mouseDist > 25) {
-                        const pull = (1 - mouseDist / mouseRange) * 0.28;
-                        node.x += ((mouse.x - node.x) / mouseDist) * pull;
-                        node.y += ((mouse.y - node.y) / mouseDist) * pull;
-                    }
-
-                    // Render node trails
-                    if (node.trail.length > 1) {
-                        const trailAlpha = (0.28 + intensity * 0.28) * node.fadeAlpha;
-                        ctx.strokeStyle = `hsla(${node.hue}, 100%, 65%, ${trailAlpha})`;
-                        ctx.lineWidth = Math.max(1, node.baseSize * 0.9);
-                        ctx.beginPath();
-                        ctx.moveTo(node.trail[0].x, node.trail[0].y);
-                        for (let t = 1; t < node.trail.length; t++) {
-                            ctx.lineTo(node.trail[t].x, node.trail[t].y);
-                        }
-                        ctx.stroke();
-                    }
-
                     // Render node sphere
                     const sphereAlpha = (0.65 + intensity * 0.35) * node.fadeAlpha;
                     ctx.fillStyle = `hsla(${node.hue}, 100%, 65%, ${sphereAlpha})`;
@@ -608,41 +587,6 @@ const PortfolioApp = (() => {
                     ctx.beginPath();
                     ctx.arc(node.x, node.y, currentRadius * 0.45, 0, Math.PI * 2);
                     ctx.fill();
-
-                    // Inter-node connections
-                    for (let j = i + 1; j < nodes.length; j++) {
-                        const node2 = nodes[j];
-                        const dx = node.x - node2.x;
-                        const dy = node.y - node2.y;
-                        const distSq = dx * dx + dy * dy;
-
-                        if (distSq < maxDistSq) {
-                            const dist = Math.sqrt(distSq);
-                            const nodeSpeed = (Math.hypot(node.vx, node.vy) + Math.hypot(node2.vx, node2.vy)) * 0.5;
-                            const speedBoost = Math.min(1.8, Math.max(0, (nodeSpeed - 0.7) * 1.6));
-                            const alpha = Math.min(1.0, (1 - dist / maxDist) * (0.42 + speedBoost * 0.35) * Math.min(node.fadeAlpha, node2.fadeAlpha));
-                            const lineHue = getCyberHue(i * 0.35, 0.0035);
-                            ctx.strokeStyle = `hsla(${lineHue}, 100%, ${65 + speedBoost * 15}%, ${alpha})`;
-                            ctx.lineWidth = alpha * (1.6 + speedBoost * 2.0);
-
-                            ctx.beginPath();
-                            ctx.moveTo(node.x, node.y);
-                            ctx.lineTo(node2.x, node2.y);
-                            ctx.stroke();
-                        }
-                    }
-
-                    // Laser beam to mouse (Aurora theme only)
-                    if (isConnectedToMouse) {
-                        const beamAlpha = (1 - mouseDist / mouseRange) * 0.85 * node.fadeAlpha;
-                        const mouseHue = getCyberHue(0, 0.005);
-                        ctx.strokeStyle = `hsla(${mouseHue}, 100%, 65%, ${beamAlpha})`;
-                        ctx.lineWidth = beamAlpha * 2.0;
-                        ctx.beginPath();
-                        ctx.moveTo(node.x, node.y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.stroke();
-                    }
                 }
             }
 
@@ -1207,7 +1151,7 @@ const PortfolioApp = (() => {
                 return dateB - dateA;
             });
 
-            const displayRepos = filtered.slice(0, Config.github.maxDisplayRepos);
+            const displayRepos = filtered;
 
             grid.innerHTML = displayRepos.map(repo => {
                 const enrich = Config.repoEnrichments[repo.name] || {};
@@ -1228,7 +1172,7 @@ const PortfolioApp = (() => {
                 const statsHtml = (stars || forks) ? `<div class="github-stats">${stars}${forks}</div>` : '';
 
                 return `
-                    <article class="github-card">
+                    <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="github-card">
                         <div>
                             <div class="github-card-header">
                                 <h3 class="github-repo-title">
@@ -1245,9 +1189,8 @@ const PortfolioApp = (() => {
                                 <span class="github-tech-dot" style="background: ${dotColor}; box-shadow: 0 0 8px ${dotColor};"></span>
                                 <span>${techText}</span>
                             </div>
-                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="github-link-btn">Code source ↗</a>
                         </div>
-                    </article>
+                    </a>
                 `;
             }).join('');
 
