@@ -1194,6 +1194,9 @@ const PortfolioApp = (() => {
             });
 
             filtered.sort((a, b) => {
+                const starsA = Number(a.stargazers_count) || 0;
+                const starsB = Number(b.stargazers_count) || 0;
+                if (starsB !== starsA) return starsB - starsA;
                 const enrichA = Config.repoEnrichments[a.name];
                 const enrichB = Config.repoEnrichments[b.name];
                 const pA = (enrichA && enrichA.priority) ? enrichA.priority : 99;
