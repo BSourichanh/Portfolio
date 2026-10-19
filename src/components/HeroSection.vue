@@ -6,6 +6,8 @@ import { useAudio } from '../composables/useAudio.js';
 const { isHacked, clickCount, registerAvatarClick } = useTheme();
 const { playHover, playClick } = useAudio();
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const avatarTitle = computed(() => {
   return isHacked.value
     ? 'Bernard Sourichanh [Mode Cyberpunk Blackwall]'
@@ -43,7 +45,7 @@ const hackCounterText = computed(() => {
 
         <div class="hero-cta">
           <a
-            href="CV.pdf"
+            :href="`${baseUrl}CV.pdf`"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-primary"
@@ -98,7 +100,7 @@ const hackCounterText = computed(() => {
           @keydown.enter="registerAvatarClick"
           @keydown.space.prevent="registerAvatarClick"
         >
-          <img src="/Images/pp.jpeg" alt="Bernard Sourichanh Photo" class="hero-avatar" />
+          <img :src="`${baseUrl}Images/pp.jpeg`" alt="Bernard Sourichanh Photo" class="hero-avatar" />
           <div class="hero-badge-float">
             <span class="dot"></span>
             <span id="hero-badge-text">{{ isHacked ? 'OVERDRIVE ACTIVE' : "Don't click me" }}</span>

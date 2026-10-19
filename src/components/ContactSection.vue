@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue';
 import { useAudio } from '../composables/useAudio.js';
 
 const { playClick, playSuccess, playHover } = useAudio();
+const baseUrl = import.meta.env.BASE_URL;
 
 const form = reactive({
   nom: '',
@@ -146,7 +147,7 @@ const handleSubmit = () => {
         <div class="contact-info-list">
           <div class="contact-info-item">
             <div class="contact-icon-wrapper">
-              <img src="/Images/env.png" alt="Icône Email" class="contact-icon-img" />
+              <img :src="`${baseUrl}Images/env.png`" alt="Icône Email" class="contact-icon-img" />
             </div>
             <div class="contact-details">
               <h4>Email Direct</h4>
@@ -160,7 +161,7 @@ const handleSubmit = () => {
 
           <div class="contact-info-item">
             <div class="contact-icon-wrapper">
-              <img src="/Images/phone.png" alt="Icône Téléphone" class="contact-icon-img" />
+              <img :src="`${baseUrl}Images/phone.png`" alt="Icône Téléphone" class="contact-icon-img" />
             </div>
             <div class="contact-details">
               <h4>Téléphone</h4>
@@ -172,7 +173,7 @@ const handleSubmit = () => {
             <div class="contact-icon-wrapper">📄</div>
             <div class="contact-details">
               <h4>Curriculum Vitae</h4>
-              <a href="CV.pdf" target="_blank" rel="noopener noreferrer">Consulter mon CV (PDF) ↗</a>
+              <a :href="`${baseUrl}CV.pdf`" target="_blank" rel="noopener noreferrer">Consulter mon CV (PDF) ↗</a>
             </div>
           </div>
 

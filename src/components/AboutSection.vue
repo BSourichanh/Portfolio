@@ -2,6 +2,7 @@
 import { useAudio } from '../composables/useAudio.js';
 
 const { playHover, playClick } = useAudio();
+const baseUrl = import.meta.env.BASE_URL;
 
 const formations = [
   {
@@ -170,7 +171,7 @@ const hobbies = [
 
         <div class="text-center mt-lg">
           <a
-            href="CV.pdf"
+            :href="`${baseUrl}CV.pdf`"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-primary btn-lg"

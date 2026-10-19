@@ -2,6 +2,7 @@
 import { useAudio } from '../composables/useAudio.js';
 
 const { playClick, playHover } = useAudio();
+const baseUrl = import.meta.env.BASE_URL;
 
 const scrollToTop = () => {
   playClick();
@@ -37,7 +38,7 @@ const scrollToTop = () => {
         <div>
           <h3 class="footer-nav-title">Réseaux & Téléchargements</h3>
           <div class="footer-links">
-            <a href="CV.pdf" target="_blank" rel="noopener noreferrer" class="footer-cv-link" @mouseenter="playHover">
+            <a :href="`${baseUrl}CV.pdf`" target="_blank" rel="noopener noreferrer" class="footer-cv-link" @mouseenter="playHover">
               📄 Télécharger mon CV (PDF) ↗
             </a>
             <a href="https://github.com/BSourichanh" target="_blank" rel="noopener noreferrer" @mouseenter="playHover">
